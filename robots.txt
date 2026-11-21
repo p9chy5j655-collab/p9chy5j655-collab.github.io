@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://p9chy5j655-collab.github.io/sitemap.xml

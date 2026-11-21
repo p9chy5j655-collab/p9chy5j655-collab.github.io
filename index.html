@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>기저귀 단가 비교 계산기 | 분유 100g당·물티슈 장당 가격</title>
+<meta name="description" content="기저귀 개당 가격, 분유 100g당 가격, 물티슈 장당 가격을 가격·수량만 넣으면 바로 계산해요. 어떤 게 더 싼지 한눈에 비교해요.">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#F6F1EA" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#191715" media="(prefers-color-scheme: dark)">
+<meta name="naver-site-verification" content="fc09fed3d4ea61fda26421a21eb1f4f3737c572e">
+<meta property="og:type" content="website">
+<meta property="og:title" content="기저귀 단가 비교 계산기 | 분유 100g당·물티슈 장당 가격">
+<meta property="og:description" content="기저귀 개당 가격, 분유 100g당 가격, 물티슈 장당 가격을 가격·수량만 넣으면 바로 계산해요. 어떤 게 더 싼지 한눈에 비교해요.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "name": "기저귀 개당 가격은 어떻게 계산하나요?",
+     "acceptedAnswer": {"@type": "Answer", "text": "실제 결제 금액을 총 매수(팩당 매수 × 팩 수)로 나누면 돼요. 계산기에 가격과 매수만 넣으면 자동으로 계산돼요."}},
+    {"@type": "Question", "name": "분유는 왜 100g당 가격으로 비교하나요?",
+     "acceptedAnswer": {"@type": "Answer", "text": "제품마다 통 용량이 달라서 통당 가격으로는 비교가 어려워요. 100g 기준으로 맞추면 어떤 제품이 더 저렴한지 한눈에 보여요."}},
+    {"@type": "Question", "name": "스틱분유는 어떻게 입력하나요?",
+     "acceptedAnswer": {"@type": "Answer", "text": "스틱 1개의 용량(g)에 스틱 개수를 곱한 총 중량을 넣어 주세요. 그러면 가루분유와 같은 100g 기준으로 비교할 수 있어요."}},
+    {"@type": "Question", "name": "물티슈 장당 가격만 보면 되나요?",
+     "acceptedAnswer": {"@type": "Answer", "text": "장당 가격과 함께 평량(gsm)도 확인하는 게 좋아요. 두께가 다르면 같은 단가라도 쓰는 양이 달라질 수 있어요."}},
+    {"@type": "Question", "name": "쿠폰이나 배송비는 어떻게 반영하나요?",
+     "acceptedAnswer": {"@type": "Answer", "text": "가격·배송비·쿠폰 할인을 각각의 칸에 넣으면 실결제가 기준으로 자동 계산돼요. 이미 할인이 반영된 금액을 가격에 넣었다면 할인 칸은 비워 두세요."}}
+  ]
+}
+</script>
+<style>
+:root{
+  --bg:#F6F1EA;
+  --surface:#FFFDFA;
+  --surface-2:#FBF7F1;
+  --ink:#2A2622;
+  --ink-2:#5E5750;
+  --ink-3:#8C847B;
+  --line:#E7DED3;
+  --line-strong:#D6CABC;
+  --accent:#B4552D;
+  --accent-ink:#FFFFFF;
+  --accent-soft:#F6E4D9;
+  --accent-text:#9A4522;
+  --warn:#8A5A00;
+  --warn-soft:#FBF0D6;
+  --focus:#B4552D;
+  --radius:16px;
+  --radius-sm:12px;
+  --shadow:0 1px 0 rgba(60,40,20,.04),0 6px 20px -12px rgba(60,40,20,.18);
+  --font:"Pretendard","Pretendard Variable","Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic","맑은 고딕",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#191715;
+    --surface:#23201D;
+    --surface-2:#1E1C19;
+    --ink:#F1EBE4;
+    --ink-2:#C5BCB2;
+    --ink-3:#958C82;
+    --line:#35302B;
+    --line-strong:#4A433C;
+    --accent:#E28A5F;
+    --accent-ink:#1C130E;
+    --accent-soft:#3A2820;
+    --accent-text:#F0A47E;
+    --warn:#F1C46A;
+    --warn-soft:#3A3020;
+    --focus:#E28A5F;
+    --shadow:0 1px 0 rgba(0,0,0,.2),0 8px 24px -14px rgba(0,0,0,.6);
+  }
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font-family:var(--font);font-size:16px;line-height:1.6;
+  word-break:keep-all;overflow-wrap:break-word;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:640px;margin:0 auto;padding:28px 16px 56px}
+.num,.result-main,.result-sub{font-variant-numeric:tabular-nums}
+
+/* Header */
+.eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:13px;font-weight:600;color:var(--accent-text);
+  letter-spacing:-.01em;margin:0 0 10px;
+}
+.eyebrow::before{content:"";width:18px;height:2px;border-radius:2px;background:var(--accent)}
+h1{font-size:clamp(26px,7vw,34px);line-height:1.25;letter-spacing:-.03em;margin:0 0 12px;font-weight:800}
+.intro{margin:0 0 24px;color:var(--ink-2);font-size:16px}
+
+/* Tabs */
+.tabs{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:4px;
+  background:var(--surface-2);border:1px solid var(--line);
+  padding:4px;border-radius:14px;margin-bottom:16px;
+  position:sticky;top:8px;z-index:5;
+  box-shadow:var(--shadow);
+}
+.tab{
+  appearance:none;border:0;background:transparent;color:var(--ink-2);
+  font:inherit;font-weight:700;font-size:16px;min-height:48px;border-radius:10px;cursor:pointer;
+  transition:background .15s,color .15s;
+}
+.tab[aria-selected="true"]{background:var(--surface);color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.08),inset 0 -2px 0 var(--accent)}
+.tab:focus-visible,button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{
+  outline:3px solid var(--focus);outline-offset:2px;
+}
+
+/* Panel */
+.panel[hidden]{display:none}
+.hint{margin:0 0 12px;font-size:15px;color:var(--ink-2)}
+.tips{
+  margin:0 0 16px;padding:12px 14px 12px 34px;list-style:none;position:relative;
+  background:var(--surface-2);border:1px dashed var(--line-strong);border-radius:var(--radius-sm);
+  font-size:14px;color:var(--ink-2);
+}
+.tips li{position:relative;margin:2px 0}
+.tips li::before{content:"";position:absolute;left:-18px;top:.7em;width:6px;height:6px;border-radius:50%;background:var(--accent);opacity:.7}
+.note{
+  margin:0 0 16px;padding:10px 14px;border-radius:var(--radius-sm);
+  background:var(--warn-soft);color:var(--warn);font-size:14px;font-weight:500;
+}
+
+/* Rows */
+.rows{display:flex;flex-direction:column;gap:12px}
+.card{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+  box-shadow:var(--shadow);overflow:hidden;
+  transition:border-color .2s, box-shadow .2s;
+}
+.card.is-best{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent),var(--shadow)}
+.card-head{display:flex;align-items:center;gap:8px;padding:10px 8px 0 14px}
+.card-no{
+  flex:none;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;
+  font-size:13px;font-weight:800;background:var(--surface-2);color:var(--ink-2);border:1px solid var(--line);
+}
+.card.is-best .card-no{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.card-head .name-input{flex:1;min-width:0}
+.remove{
+  flex:none;appearance:none;border:0;background:transparent;color:var(--ink-3);
+  width:44px;height:44px;border-radius:10px;cursor:pointer;font-size:22px;line-height:1;
+}
+.remove:hover{background:var(--surface-2);color:var(--ink)}
+.remove:disabled{opacity:.3;cursor:not-allowed}
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:10px 10px;padding:12px 14px 14px}
+.field{display:flex;flex-direction:column;gap:4px;min-width:0}
+.field.full{grid-column:1/-1}
+.field label,.field .label{font-size:13px;font-weight:600;color:var(--ink-2)}
+.field label .opt{font-weight:500;color:var(--ink-3)}
+.input-wrap{position:relative;display:flex;align-items:center}
+input[type="text"],select{
+  width:100%;min-height:48px;padding:10px 12px;font:inherit;font-size:16px;color:var(--ink);
+  background:var(--surface-2);border:1px solid var(--line-strong);border-radius:10px;
+  -webkit-appearance:none;appearance:none;
+}
+.input-wrap input{padding-right:40px;text-align:right;font-variant-numeric:tabular-nums}
+.input-wrap input[data-k="gsm"]{padding-right:52px}
+.input-wrap .unit{position:absolute;right:12px;font-size:14px;color:var(--ink-3);pointer-events:none}
+input::placeholder{color:var(--ink-3);opacity:.8}
+input:focus,select:focus{border-color:var(--accent);background:var(--surface);outline:none;box-shadow:0 0 0 3px var(--accent-soft)}
+.name-input input{background:transparent;border-color:transparent;font-weight:700;min-height:44px;padding:8px 6px}
+.name-input input:hover{border-color:var(--line)}
+
+.seg{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;background:var(--surface-2);border:1px solid var(--line-strong);border-radius:10px;padding:3px}
+.seg button{
+  appearance:none;border:0;background:transparent;font:inherit;font-size:15px;font-weight:600;color:var(--ink-2);
+  min-height:44px;border-radius:8px;cursor:pointer;
+}
+.seg button[aria-pressed="true"]{background:var(--surface);color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.1),inset 0 0 0 1.5px var(--accent)}
+
+.result{
+  border-top:1px solid var(--line);background:var(--surface-2);
+  padding:12px 14px;display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px;min-height:56px;
+}
+.result-empty{color:var(--ink-3);font-size:14px}
+.result-main{font-size:22px;font-weight:800;letter-spacing:-.02em}
+.result-main small{font-size:14px;font-weight:600;color:var(--ink-2);margin-left:2px}
+.result-sub{font-size:13px;color:var(--ink-2);width:100%}
+.badge{
+  display:inline-flex;align-items:center;gap:4px;font-size:12px;font-weight:800;
+  padding:3px 9px;border-radius:999px;background:var(--accent);color:var(--accent-ink);
+  align-self:center;
+}
+.diff{font-size:13px;font-weight:700;color:var(--ink-2);padding:2px 8px;border-radius:999px;background:var(--surface);border:1px solid var(--line);align-self:center}
+.row-warn{width:100%;font-size:13px;color:var(--warn);background:var(--warn-soft);padding:6px 10px;border-radius:8px;margin-top:4px}
+.group-tag{font-size:12px;font-weight:700;color:var(--ink-3);align-self:center}
+
+.add{
+  margin-top:12px;width:100%;min-height:52px;appearance:none;cursor:pointer;
+  border:1.5px dashed var(--line-strong);background:transparent;color:var(--ink);
+  font:inherit;font-weight:700;font-size:16px;border-radius:var(--radius);
+}
+.add:hover{border-color:var(--accent);color:var(--accent-text)}
+.add:disabled{opacity:.45;cursor:not-allowed}
+
+.panel-warn{margin-top:12px}
+
+/* Summary */
+.summary{
+  margin-top:20px;padding:16px;border-radius:var(--radius);
+  background:var(--ink);color:var(--bg);
+}
+@media (prefers-color-scheme: dark){ .summary{background:#2E2925;color:var(--ink)} }
+.summary h2{margin:0 0 6px;font-size:15px;font-weight:700;opacity:.8}
+.summary-text{margin:0 0 12px;font-size:15px;line-height:1.55}
+.summary-text strong{font-size:18px}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  min-height:48px;padding:0 18px;border-radius:12px;font:inherit;font-weight:700;font-size:16px;
+  cursor:pointer;text-decoration:none;border:0;
+}
+.btn-primary{background:var(--accent);color:var(--accent-ink);width:100%}
+.btn-primary:active{transform:translateY(1px)}
+.copy-status{display:block;min-height:1.4em;margin-top:8px;font-size:13px;opacity:.85;text-align:center}
+
+/* Sections */
+section.block{margin-top:40px}
+section.block h2{font-size:20px;letter-spacing:-.02em;margin:0 0 12px;font-weight:800}
+.disclosure{margin:0 0 12px;font-size:15px;color:var(--ink-2)}
+.aff{display:grid;gap:10px}
+.btn-aff{
+  justify-content:space-between;width:100%;background:var(--surface);color:var(--ink);
+  border:1px solid var(--line-strong);box-shadow:var(--shadow);min-height:56px;
+}
+.btn-aff:hover{border-color:var(--accent)}
+.btn-aff .arrow{color:var(--accent-text);font-weight:800}
+
+.faq details{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-sm);margin-bottom:8px;
+}
+.faq summary{
+  list-style:none;cursor:pointer;padding:14px 44px 14px 16px;min-height:52px;font-weight:700;position:relative;
+}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{
+  content:"";position:absolute;right:18px;top:50%;width:9px;height:9px;margin-top:-6px;
+  border-right:2px solid var(--ink-3);border-bottom:2px solid var(--ink-3);transform:rotate(45deg);transition:transform .2s;
+}
+.faq details[open] summary::after{transform:rotate(-135deg);margin-top:-2px}
+.faq details p{margin:0;padding:0 16px 16px;color:var(--ink-2)}
+
+.disclaimer{margin-top:32px;padding-top:16px;border-top:1px solid var(--line);font-size:14px;color:var(--ink-3)}
+.reset{appearance:none;background:none;border:0;color:var(--ink-3);font:inherit;font-size:14px;text-decoration:underline;cursor:pointer;min-height:44px;padding:0 4px}
+
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+@media (min-width:560px){
+  .wrap{padding-top:44px}
+  .fields{grid-template-columns:1fr 1fr 1fr}
+}
+@media (prefers-reduced-motion: reduce){ *{transition:none !important} }
+</style>
+</head>
+<body>
+<main class="wrap">
+  <header>
+    <p class="eyebrow">기저귀 · 분유 · 물티슈</p>
+    <h1>육아용품 개당 단가 계산기</h1>
+    <p class="intro">기저귀, 분유, 물티슈 중 어떤 게 정말 싼지 헷갈리셨죠? 가격과 수량만 넣으면 1매·100g·100ml 기준 단가로 바로 비교해 드려요.</p>
+  </header>
+
+  <div class="tabs" role="tablist" aria-label="품목 선택">
+    <button class="tab" role="tab" id="tab-diaper" aria-controls="panel-diaper" aria-selected="true" data-tab="diaper">기저귀</button>
+    <button class="tab" role="tab" id="tab-formula" aria-controls="panel-formula" aria-selected="false" data-tab="formula" tabindex="-1">분유</button>
+    <button class="tab" role="tab" id="tab-wipes" aria-controls="panel-wipes" aria-selected="false" data-tab="wipes" tabindex="-1">물티슈</button>
+  </div>
+
+  <section class="panel" id="panel-diaper" role="tabpanel" aria-labelledby="tab-diaper" data-panel="diaper">
+    <p class="hint">가격과 총 매수(팩당 매수 × 팩 수)를 넣으면 1매당 가격을 알려드려요.</p>
+    <ul class="tips">
+      <li>밴드형과 팬티형은 따로 비교하세요. 같은 브랜드라도 형태에 따라 단가가 달라요.</li>
+      <li>같은 단계(사이즈)끼리 비교해야 정확해요. 단계가 올라가면 팩당 매수가 줄어드는 경우가 많아요.</li>
+      <li>배송비와 쿠폰을 반영한 실제 결제 금액으로 계산해야 진짜 단가가 나와요.</li>
+    </ul>
+    <div class="rows" data-rows="diaper"></div>
+    <button type="button" class="add" data-add="diaper">+ 상품 추가</button>
+    <div class="panel-warn" data-panel-warn="diaper"></div>
+  </section>
+
+  <section class="panel" id="panel-formula" role="tabpanel" aria-labelledby="tab-formula" data-panel="formula" hidden>
+    <p class="hint">가루분유는 100g당, 액상분유는 100ml당 가격으로 계산해 드려요.</p>
+    <ul class="tips">
+      <li>스틱분유는 "스틱 1개 용량(g) × 개수"로 총 중량을 넣어 주세요.</li>
+      <li>액상분유와 가루분유는 단위가 달라 직접 비교하기 어려워요. 같은 종류끼리 비교하세요.</li>
+      <li>배송비와 쿠폰을 반영한 실결제가로 계산하고, 같은 단계끼리 비교하세요.</li>
+    </ul>
+    <p class="note">액상분유(100ml당)와 가루분유(캔·스틱, 100g당)는 단위가 달라 직접 비교할 수 없어요. 최저가 표시는 가루끼리, 액상끼리 따로 매겨요.</p>
+    <div class="rows" data-rows="formula"></div>
+    <button type="button" class="add" data-add="formula">+ 상품 추가</button>
+    <div class="panel-warn" data-panel-warn="formula"></div>
+  </section>
+
+  <section class="panel" id="panel-wipes" role="tabpanel" aria-labelledby="tab-wipes" data-panel="wipes" hidden>
+    <p class="hint">가격과 총 매수를 넣으면 1매당·100매당 가격을 보여드려요. 평량(gsm)은 선택이에요.</p>
+    <ul class="tips">
+      <li>평량(gsm)이 비슷한 것끼리 비교하세요. 두께가 다르면 단가만으로 비교하기 어려워요.</li>
+      <li>캡형과 리필형, 휴대용은 매수 구성이 달라요. 총 매수를 꼭 확인하세요.</li>
+      <li>배송비와 쿠폰을 포함한 실결제가로 계산해야 정확해요.</li>
+    </ul>
+    <div class="rows" data-rows="wipes"></div>
+    <button type="button" class="add" data-add="wipes">+ 상품 추가</button>
+    <div class="panel-warn" data-panel-warn="wipes"></div>
+  </section>
+
+  <div class="summary" aria-live="polite">
+    <h2>비교 결과</h2>
+    <p class="summary-text" id="summary-text">가격과 수량을 넣으면 여기에 최저가가 표시돼요.</p>
+    <button type="button" class="btn btn-primary" id="copy-btn">결과 복사</button>
+    <span class="copy-status" id="copy-status" role="status"></span>
+  </div>
+
+  <section class="block" aria-labelledby="aff-title">
+    <h2 id="aff-title">추천 상품 보러가기</h2>
+    <p class="disclosure">이 페이지는 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.</p>
+    <div class="aff">
+      <a class="btn btn-aff" href="https://link.coupang.com/a/iQUGxQifAG" rel="sponsored noopener" target="_blank"><span>기저귀 추천 상품</span><span class="arrow" aria-hidden="true">→</span></a>
+      <a class="btn btn-aff" href="https://link.coupang.com/a/iQUHz7gsHA" rel="sponsored noopener" target="_blank"><span>분유 추천 상품</span><span class="arrow" aria-hidden="true">→</span></a>
+      <a class="btn btn-aff" href="https://link.coupang.com/a/iQUIxNzmkC" rel="sponsored noopener" target="_blank"><span>물티슈 추천 상품</span><span class="arrow" aria-hidden="true">→</span></a>
+    </div>
+  </section>
+
+  <section class="block faq" aria-labelledby="faq-title">
+    <h2 id="faq-title">자주 묻는 질문</h2>
+    <details>
+      <summary>기저귀 개당 가격은 어떻게 계산하나요?</summary>
+      <p>실제 결제 금액을 총 매수(팩당 매수 × 팩 수)로 나누면 돼요. 계산기에 가격과 매수만 넣으면 자동으로 계산돼요.</p>
+    </details>
+    <details>
+      <summary>분유는 왜 100g당 가격으로 비교하나요?</summary>
+      <p>제품마다 통 용량이 달라서 통당 가격으로는 비교가 어려워요. 100g 기준으로 맞추면 어떤 제품이 더 저렴한지 한눈에 보여요.</p>
+    </details>
+    <details>
+      <summary>스틱분유는 어떻게 입력하나요?</summary>
+      <p>스틱 1개의 용량(g)에 스틱 개수를 곱한 총 중량을 넣어 주세요. 그러면 가루분유와 같은 100g 기준으로 비교할 수 있어요.</p>
+    </details>
+    <details>
+      <summary>물티슈 장당 가격만 보면 되나요?</summary>
+      <p>장당 가격과 함께 평량(gsm)도 확인하는 게 좋아요. 두께가 다르면 같은 단가라도 쓰는 양이 달라질 수 있어요.</p>
+    </details>
+    <details>
+      <summary>쿠폰이나 배송비는 어떻게 반영하나요?</summary>
+      <p>가격·배송비·쿠폰 할인을 각각의 칸에 넣으면 실결제가 기준으로 자동 계산돼요. 이미 할인이 반영된 금액을 가격에 넣었다면 할인 칸은 비워 두세요.</p>
+    </details>
+  </section>
+
+  <footer class="disclaimer">
+    <p>계산 결과는 직접 입력하신 값을 기준으로 해요. 실제 가격과 구성은 판매처에서 꼭 확인해 주세요.</p>
+    <button type="button" class="reset" id="reset-btn">입력값 모두 지우기</button>
+  </footer>
+</main>
+
+<script id="calc-core">
+/* CALC-START — pure functions, no DOM. Extracted for node tests. */
+var Calc = (function () {
+  var MAX_ROWS = 6;
+
+  /** Parse user text to a finite number. Accepts "59,900", " 14.5 ". Returns NaN if empty/invalid. */
+  function num(v) {
+    if (typeof v === 'number') return isFinite(v) ? v : NaN;
+    if (v == null) return NaN;
+    var s = String(v).replace(/[,\s원]/g, '');
+    if (s === '' || !/^-?\d*\.?\d+$|^-?\d+\.$/.test(s)) return NaN;
+    var n = parseFloat(s);
+    return isFinite(n) ? n : NaN;
+  }
+  /** Optional amount: empty -> default. Invalid/negative -> default. */
+  function opt(v, d) {
+    var n = num(v);
+    return (isFinite(n) && n >= 0) ? n : d;
+  }
+  function pos(v) { var n = num(v); return (isFinite(n) && n > 0) ? n : NaN; }
+
+  /** 실결제가 = 가격 + 배송비 − 할인, clamped at 0. */
+  function payment(price, ship, disc) {
+    var raw = price + ship - disc;
+    return { pay: raw < 0 ? 0 : raw, clamped: raw < 0 };
+  }
+
+  function invalid() { return { ok: false }; }
+
+  /** 기저귀: 원/매 */
+  function diaper(r) {
+    var price = num(r.price);
+    var per = pos(r.perPack);
+    var packs = opt(r.packs, 1);
+    if (!(isFinite(price) && price >= 0) || !isFinite(per) || !(packs > 0)) return invalid();
+    var p = payment(price, opt(r.ship, 0), opt(r.disc, 0));
+    var units = per * packs;
+    var unit = p.pay / units;
+    if (!isFinite(unit)) return invalid();
+    return { ok: true, pay: p.pay, clamped: p.clamped, units: units, value: unit, group: 'all' };
+  }
+
+  /** 분유: type can|stick (원/100g), liquid (원/100ml) */
+  function formula(r) {
+    var type = r.type === 'stick' || r.type === 'liquid' ? r.type : 'can';
+    var price = num(r.price);
+    var size = pos(r.size);
+    var count = opt(r.count, 1);
+    if (!(isFinite(price) && price >= 0) || !isFinite(size) || !(count > 0)) return invalid();
+    var p = payment(price, opt(r.ship, 0), opt(r.disc, 0));
+    var total = size * count;
+    var per100 = p.pay / total * 100;
+    if (!isFinite(per100)) return invalid();
+    var liquid = type === 'liquid';
+    return {
+      ok: true, pay: p.pay, clamped: p.clamped, type: type,
+      total: total, unitLabel: liquid ? 'ml' : 'g',
+      value: per100, group: liquid ? 'liquid' : 'powder'
+    };
+  }
+
+  /** 물티슈: 원/매, 원/100매 */
+  function wipes(r) {
+    var price = num(r.price);
+    var per = pos(r.perPack);
+    var packs = opt(r.packs, 1);
+    if (!(isFinite(price) && price >= 0) || !isFinite(per) || !(packs > 0)) return invalid();
+    var p = payment(price, opt(r.ship, 0), opt(r.disc, 0));
+    var units = per * packs;
+    var unit = p.pay / units;
+    if (!isFinite(unit)) return invalid();
+    var gsm = pos(r.gsm);
+    return {
+      ok: true, pay: p.pay, clamped: p.clamped, units: units,
+      value: unit, per100: unit * 100, gsm: isFinite(gsm) ? gsm : null, group: 'all'
+    };
+  }
+
+  /**
+   * Rank results within their group. Returns array aligned with input:
+   * { best: bool, pct: number|null } or null for invalid rows.
+   * A badge is only meaningful when ≥2 valid rows share a group.
+   */
+  function rank(results) {
+    var groups = {};
+    results.forEach(function (res, i) {
+      if (!res || !res.ok) return;
+      (groups[res.group] = groups[res.group] || []).push(i);
+    });
+    var out = results.map(function () { return null; });
+    Object.keys(groups).forEach(function (g) {
+      var idx = groups[g];
+      var min = Infinity;
+      idx.forEach(function (i) { if (results[i].value < min) min = results[i].value; });
+      idx.forEach(function (i) {
+        var v = results[i].value;
+        var comparable = idx.length >= 2;
+        var best = comparable && v === min;
+        var pct = null;
+        if (comparable && !best && min > 0) {
+          pct = (v / min - 1) * 100;
+          if (!isFinite(pct)) pct = null;
+        }
+        out[i] = { best: best, pct: pct, groupSize: idx.length };
+      });
+    });
+    return out;
+  }
+
+  /** gsm spread among wipes rows that entered gsm; true if max-min > 5 */
+  function gsmMismatch(results) {
+    var g = results.filter(function (r) { return r && r.ok && r.gsm != null; }).map(function (r) { return r.gsm; });
+    if (g.length < 2) return false;
+    return Math.max.apply(null, g) - Math.min.apply(null, g) > 5;
+  }
+
+  /* Formatting (ko-KR) */
+  function won(n) { return isFinite(n) ? Math.round(n).toLocaleString('ko-KR') : '-'; }
+  function one(n) { return isFinite(n) ? n.toLocaleString('ko-KR', { minimumFractionDigits: 1, maximumFractionDigits: 1 }) : '-'; }
+  function upTo1(n) { return isFinite(n) ? n.toLocaleString('ko-KR', { minimumFractionDigits: 0, maximumFractionDigits: 1 }) : '-'; }
+  function pctText(p) {
+    if (p == null || !isFinite(p)) return '';
+    var r = Math.round(p * 10) / 10;
+    if (r === 0) return '최저가와 거의 같음';
+    return '최저가 대비 +' + r.toLocaleString('ko-KR', { maximumFractionDigits: 1 }) + '%';
+  }
+
+  return {
+    MAX_ROWS: MAX_ROWS, num: num, payment: payment,
+    diaper: diaper, formula: formula, wipes: wipes,
+    rank: rank, gsmMismatch: gsmMismatch,
+    won: won, one: one, upTo1: upTo1, pctText: pctText
+  };
+})();
+if (typeof module !== 'undefined' && module.exports) module.exports = Calc;
+/* CALC-END */
+</script>
+
+<script>
+(function () {
+  'use strict';
+  var STORE_KEY = 'babyUnitCalc.v1';
+  var CAT = {
+    diaper: { label: '기저귀', calc: Calc.diaper },
+    formula: { label: '분유', calc: Calc.formula },
+    wipes: { label: '물티슈', calc: Calc.wipes }
+  };
+  var FIELDS = {
+    diaper: [
+      { k: 'price', label: '가격', unit: '원', mode: 'numeric', ph: '59,900' },
+      { k: 'perPack', label: '팩당 매수', unit: '매', mode: 'numeric', ph: '40' },
+      { k: 'packs', label: '팩 수', unit: '팩', mode: 'numeric', ph: '1', def: '1' },
+      { k: 'ship', label: '배송비', unit: '원', mode: 'numeric', ph: '0', def: '0' },
+      { k: 'disc', label: '쿠폰·할인', unit: '원', mode: 'numeric', ph: '0', def: '0' }
+    ],
+    formula: [
+      { k: 'price', label: '가격', unit: '원', mode: 'numeric', ph: '33,000' },
+      { k: 'size', label: '용량', unit: 'g', mode: 'decimal', ph: '800', dyn: true },
+      { k: 'count', label: '개수', unit: '개', mode: 'numeric', ph: '1', def: '1', dyn: true },
+      { k: 'ship', label: '배송비', unit: '원', mode: 'numeric', ph: '0', def: '0' },
+      { k: 'disc', label: '쿠폰·할인', unit: '원', mode: 'numeric', ph: '0', def: '0' }
+    ],
+    wipes: [
+      { k: 'price', label: '가격', unit: '원', mode: 'numeric', ph: '19,900' },
+      { k: 'perPack', label: '팩당 매수', unit: '매', mode: 'numeric', ph: '100' },
+      { k: 'packs', label: '팩 수', unit: '팩', mode: 'numeric', ph: '10', def: '1' },
+      { k: 'gsm', label: '평량', unit: 'gsm', mode: 'decimal', ph: '선택', optional: true },
+      { k: 'ship', label: '배송비', unit: '원', mode: 'numeric', ph: '0', def: '0' },
+      { k: 'disc', label: '쿠폰·할인', unit: '원', mode: 'numeric', ph: '0', def: '0' }
+    ]
+  };
+  var FORMULA_TYPE = {
+    can: { size: '1캔 용량', sizeUnit: 'g', count: '캔 수', countUnit: '캔', sizePh: '800', countPh: '1' },
+    stick: { size: '스틱 1개', sizeUnit: 'g', count: '스틱 개수', countUnit: '개', sizePh: '14', countPh: '20' },
+    liquid: { size: '1개 용량', sizeUnit: 'ml', count: '개수', countUnit: '개', sizePh: '200', countPh: '24' }
+  };
+
+  var uid = 0;
+  function newRow(cat) {
+    var r = { id: ++uid, name: '' };
+    FIELDS[cat].forEach(function (f) { r[f.k] = f.def || ''; });
+    if (cat === 'formula') r.type = 'can';
+    return r;
+  }
+  function freshState() {
+    return {
+      tab: 'diaper',
+      diaper: [newRow('diaper'), newRow('diaper')],
+      formula: [newRow('formula'), newRow('formula')],
+      wipes: [newRow('wipes'), newRow('wipes')]
+    };
+  }
+
+  var state = load() || freshState();
+
+  function load() {
+    try {
+      var raw = window.localStorage.getItem(STORE_KEY);
+      if (!raw) return null;
+      var s = JSON.parse(raw);
+      if (!s || typeof s !== 'object') return null;
+      var ok = ['diaper', 'formula', 'wipes'].every(function (c) {
+        return Array.isArray(s[c]) && s[c].length >= 1 && s[c].length <= Calc.MAX_ROWS;
+      });
+      if (!ok) return null;
+      ['diaper', 'formula', 'wipes'].forEach(function (c) {
+        s[c] = s[c].map(function (old) {
+          var r = newRow(c);
+          Object.keys(r).forEach(function (k) {
+            if (k !== 'id' && typeof old[k] === 'string') r[k] = old[k].slice(0, 60);
+          });
+          if (c === 'formula' && !FORMULA_TYPE[r.type]) r.type = 'can';
+          return r;
+        });
+      });
+      if (!CAT[s.tab]) s.tab = 'diaper';
+      return s;
+    } catch (e) { return null; }
+  }
+  var saveTimer = null;
+  function save() {
+    clearTimeout(saveTimer);
+    saveTimer = setTimeout(function () {
+      try { window.localStorage.setItem(STORE_KEY, JSON.stringify(state)); } catch (e) { /* private mode etc. */ }
+    }, 250);
+  }
+
+  /* ---------- DOM helpers ---------- */
+  function el(tag, attrs, children) {
+    var n = document.createElement(tag);
+    if (attrs) Object.keys(attrs).forEach(function (k) {
+      if (k === 'text') n.textContent = attrs[k];
+      else if (k === 'class') n.className = attrs[k];
+      else n.setAttribute(k, attrs[k]);
+    });
+    (children || []).forEach(function (c) { if (c) n.appendChild(c); });
+    return n;
+  }
+  function $(sel, root) { return (root || document).querySelector(sel); }
+  function $all(sel, root) { return Array.prototype.slice.call((root || document).querySelectorAll(sel)); }
+
+  function rowLabel(cat, i) {
+    var r = state[cat][i];
+    var n = (r.name || '').trim();
+    return n || ('상품 ' + String.fromCharCode(65 + i));
+  }
+
+  /* ---------- Render rows (structure) ---------- */
+  function renderRows(cat) {
+    var host = $('[data-rows="' + cat + '"]');
+    host.textContent = '';
+    state[cat].forEach(function (row, i) {
+      host.appendChild(buildCard(cat, row, i));
+    });
+    var addBtn = $('[data-add="' + cat + '"]');
+    addBtn.disabled = state[cat].length >= Calc.MAX_ROWS;
+    addBtn.textContent = state[cat].length >= Calc.MAX_ROWS ? '최대 ' + Calc.MAX_ROWS + '개까지 비교할 수 있어요' : '+ 상품 추가';
+    recalc(cat);
+  }
+
+  function buildCard(cat, row, i) {
+    var card = el('article', { class: 'card', 'data-id': String(row.id) });
+    var nameId = cat + '-' + row.id + '-name';
+    var nameInput = el('input', {
+      type: 'text', id: nameId, value: row.name, placeholder: '상품 ' + String.fromCharCode(65 + i) + ' (상품명 선택)',
+      'data-k': 'name', autocomplete: 'off', maxlength: '40', enterkeyhint: 'next'
+    });
+    nameInput.value = row.name;
+    var head = el('div', { class: 'card-head' }, [
+      el('span', { class: 'card-no', 'aria-hidden': 'true', text: String(i + 1) }),
+      el('div', { class: 'name-input' }, [el('label', { class: 'sr-only', for: nameId, text: '상품명 (선택)' }), nameInput]),
+      el('button', {
+        type: 'button', class: 'remove', 'data-remove': String(row.id),
+        'aria-label': (i + 1) + '번 상품 삭제', title: '삭제'
+      })
+    ]);
+    head.lastChild.textContent = '×';
+    if (state[cat].length <= 1) head.lastChild.disabled = true;
+    card.appendChild(head);
+
+    var fields = el('div', { class: 'fields' });
+    if (cat === 'formula') {
+      var seg = el('div', { class: 'seg', role: 'group', 'aria-label': '분유 종류' });
+      [['can', '캔'], ['stick', '스틱'], ['liquid', '액상']].forEach(function (t) {
+        var b = el('button', { type: 'button', 'data-type': t[0], 'aria-pressed': String(row.type === t[0]), text: t[1] });
+        seg.appendChild(b);
+      });
+      fields.appendChild(el('div', { class: 'field full' }, [el('span', { class: 'label', text: '종류' }), seg]));
+    }
+    FIELDS[cat].forEach(function (f) {
+      var label = f.label, unit = f.unit, ph = f.ph;
+      if (cat === 'formula' && f.dyn) {
+        var t = FORMULA_TYPE[row.type] || FORMULA_TYPE.can;
+        if (f.k === 'size') { label = t.size; unit = t.sizeUnit; ph = t.sizePh; }
+        if (f.k === 'count') { label = t.count; unit = t.countUnit; ph = t.countPh; }
+      }
+      var id = cat + '-' + row.id + '-' + f.k;
+      var input = el('input', {
+        type: 'text', id: id, inputmode: f.mode, autocomplete: 'off', enterkeyhint: 'next',
+        placeholder: ph, 'data-k': f.k, 'aria-describedby': cat + '-' + row.id + '-result'
+      });
+      input.value = row[f.k] || '';
+      var lab = el('label', { for: id });
+      lab.appendChild(document.createTextNode(label));
+      if (f.optional) lab.appendChild(el('span', { class: 'opt', text: ' (선택)' }));
+      fields.appendChild(el('div', { class: 'field' }, [
+        lab,
+        el('div', { class: 'input-wrap' }, [input, el('span', { class: 'unit', 'aria-hidden': 'true', text: unit })])
+      ]));
+    });
+    card.appendChild(fields);
+    card.appendChild(el('div', { class: 'result', id: cat + '-' + row.id + '-result', 'aria-live': 'polite' }));
+    return card;
+  }
+
+  /* ---------- Recalc (results only; keeps focus) ---------- */
+  var lastResults = { diaper: [], formula: [], wipes: [] };
+
+  function recalc(cat) {
+    var rows = state[cat];
+    var results = rows.map(function (r) { return CAT[cat].calc(r); });
+    var ranks = Calc.rank(results);
+    lastResults[cat] = { results: results, ranks: ranks };
+
+    rows.forEach(function (row, i) {
+      var card = $('[data-rows="' + cat + '"] [data-id="' + row.id + '"]');
+      if (!card) return;
+      var box = $('.result', card);
+      box.textContent = '';
+      var res = results[i], rk = ranks[i];
+      card.classList.toggle('is-best', !!(rk && rk.best));
+      if (!res.ok) {
+        box.appendChild(el('span', { class: 'result-empty', text: emptyHint(cat, row) }));
+        return;
+      }
+      var main = el('span', { class: 'result-main' });
+      var sub;
+      if (cat === 'diaper') {
+        main.textContent = Calc.one(res.value) + '원';
+        main.appendChild(el('small', { text: '/매' }));
+        sub = '실결제 ' + Calc.won(res.pay) + '원 · 총 ' + Calc.upTo1(res.units) + '매';
+      } else if (cat === 'formula') {
+        main.textContent = Calc.upTo1(res.value) + '원';
+        main.appendChild(el('small', { text: '/100' + res.unitLabel }));
+        sub = '실결제 ' + Calc.won(res.pay) + '원 · 총 ' + Calc.upTo1(res.total) + res.unitLabel;
+      } else {
+        main.textContent = Calc.one(res.value) + '원';
+        main.appendChild(el('small', { text: '/매' }));
+        sub = '100매당 ' + Calc.upTo1(res.per100) + '원 · 실결제 ' + Calc.won(res.pay) + '원 · 총 ' + Calc.upTo1(res.units) + '매' +
+          (res.gsm != null ? ' · ' + Calc.upTo1(res.gsm) + 'gsm' : '');
+      }
+      box.appendChild(main);
+      if (rk && rk.best) box.appendChild(el('span', { class: 'badge', text: '최저가' }));
+      else if (rk && rk.pct != null) box.appendChild(el('span', { class: 'diff', text: Calc.pctText(rk.pct) }));
+      if (cat === 'formula') box.appendChild(el('span', { class: 'group-tag', text: res.group === 'liquid' ? '액상끼리 비교' : '가루끼리 비교' }));
+      box.appendChild(el('span', { class: 'result-sub', text: sub }));
+      if (res.clamped) box.appendChild(el('span', { class: 'row-warn', text: '할인 금액이 가격+배송비보다 커서 실결제가를 0원으로 계산했어요. 입력값을 확인해 주세요.' }));
+    });
+
+    var warnHost = $('[data-panel-warn="' + cat + '"]');
+    warnHost.textContent = '';
+    if (cat === 'wipes' && Calc.gsmMismatch(results)) {
+      warnHost.appendChild(el('p', { class: 'note', text: '평량(gsm) 차이가 커요. 같은 평량끼리 비교하세요.' }));
+    }
+    if (cat === 'formula') {
+      var hasL = results.some(function (r) { return r.ok && r.group === 'liquid'; });
+      var hasP = results.some(function (r) { return r.ok && r.group === 'powder'; });
+      if (hasL && hasP) warnHost.appendChild(el('p', { class: 'note', text: '액상과 가루가 섞여 있어요. 최저가는 종류별로 따로 표시했어요.' }));
+    }
+    if (cat === state.tab) renderSummary();
+  }
+
+  function emptyHint(cat, row) {
+    if (Calc.num(row.price) < 0) return '가격을 확인해 주세요.';
+    if (cat === 'formula') return '가격과 용량을 넣으면 단가가 계산돼요.';
+    return '가격과 매수를 넣으면 단가가 계산돼요.';
+  }
+
+  /* ---------- Summary + copy ---------- */
+  function unitText(cat, res) {
+    if (cat === 'diaper') return '1매당 ' + Calc.one(res.value) + '원';
+    if (cat === 'formula') return '100' + res.unitLabel + '당 ' + Calc.upTo1(res.value) + '원';
+    return '1매당 ' + Calc.one(res.value) + '원 (100매당 ' + Calc.upTo1(res.per100) + '원)';
+  }
+
+  function bestEntries(cat) {
+    var lr = lastResults[cat];
+    if (!lr || !lr.results) return [];
+    var out = [];
+    lr.results.forEach(function (res, i) {
+      if (lr.ranks[i] && lr.ranks[i].best) out.push({ i: i, res: res });
+    });
+    return out;
+  }
+
+  function renderSummary() {
+    var cat = state.tab;
+    var p = $('#summary-text');
+    p.textContent = '';
+    var lr = lastResults[cat];
+    var valid = lr && lr.results ? lr.results.filter(function (r) { return r.ok; }).length : 0;
+    if (valid === 0) { p.textContent = '가격과 수량을 넣으면 여기에 최저가가 표시돼요.'; return; }
+    var best = bestEntries(cat);
+    if (best.length === 0) {
+      p.textContent = '상품을 2개 이상 입력하면 최저가를 알려드려요.';
+      return;
+    }
+    best.forEach(function (b, k) {
+      if (k) p.appendChild(document.createElement('br'));
+      var prefix = cat === 'formula' ? (b.res.group === 'liquid' ? '액상 최저가: ' : '가루 최저가: ') : CAT[cat].label + ' 최저가: ';
+      p.appendChild(document.createTextNode(prefix + rowLabel(cat, b.i) + ' · '));
+      p.appendChild(el('strong', { text: unitText(cat, b.res) }));
+    });
+  }
+
+  function summaryPlain() {
+    var cat = state.tab;
+    var lr = lastResults[cat];
+    var lines = ['[육아용품 개당 단가 비교 · ' + CAT[cat].label + ']'];
+    var any = false;
+    var order = cat === 'formula' ? ['powder', 'liquid'] : ['all'];
+    order.forEach(function (g) {
+      var items = [];
+      lr.results.forEach(function (res, i) { if (res.ok && res.group === g) items.push(i); });
+      if (!items.length) return;
+      items.sort(function (a, b) { return lr.results[a].value - lr.results[b].value; });
+      if (cat === 'formula') lines.push(g === 'liquid' ? '· 액상분유 (100ml당)' : '· 가루분유 (100g당)');
+      items.forEach(function (i, n) {
+        any = true;
+        var res = lr.results[i], rk = lr.ranks[i];
+        var qty = cat === 'formula' ? Calc.upTo1(res.total) + res.unitLabel : Calc.upTo1(res.units) + '매';
+        var tag = rk && rk.best ? ' ← 최저가' : (rk && rk.pct != null ? ' (' + Calc.pctText(rk.pct) + ')' : '');
+        lines.push((n + 1) + '. ' + rowLabel(cat, i) + ': 실결제 ' + Calc.won(res.pay) + '원 / ' + qty + ' → ' + unitText(cat, res) + tag);
+      });
+    });
+    if (!any) return '';
+    lines.push('');
+    lines.push('※ 계산 결과는 직접 입력하신 값을 기준으로 해요. 실제 가격과 구성은 판매처에서 꼭 확인해 주세요.');
+    return lines.join('\n');
+  }
+
+  function setStatus(msg) {
+    var s = $('#copy-status');
+    s.textContent = msg;
+    clearTimeout(setStatus.t);
+    setStatus.t = setTimeout(function () { s.textContent = ''; }, 3000);
+  }
+
+  function fallbackCopy(text) {
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    ta.setAttribute('readonly', '');
+    ta.style.position = 'fixed'; ta.style.top = '0'; ta.style.left = '0'; ta.style.opacity = '0';
+    ta.style.fontSize = '16px';
+    document.body.appendChild(ta);
+    var ok = false;
+    try {
+      ta.focus(); ta.select(); ta.setSelectionRange(0, text.length);
+      ok = document.execCommand && document.execCommand('copy');
+    } catch (e) { ok = false; }
+    document.body.removeChild(ta);
+    return !!ok;
+  }
+
+  function copyResult() {
+    var text = summaryPlain();
+    if (!text) { setStatus('먼저 가격과 수량을 입력해 주세요.'); return; }
+    var done = function () { setStatus('복사했어요. 블로그에 붙여 넣으세요.'); };
+    var fail = function () {
+      if (fallbackCopy(text)) done();
+      else setStatus('복사하지 못했어요. 브라우저 설정을 확인해 주세요.');
+    };
+    try {
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(text).then(done, fail);
+      } else fail();
+    } catch (e) { fail(); }
+  }
+
+  /* ---------- Tabs ---------- */
+  function setTab(cat, focus) {
+    state.tab = cat;
+    $all('.tab').forEach(function (t) {
+      var on = t.getAttribute('data-tab') === cat;
+      t.setAttribute('aria-selected', String(on));
+      t.tabIndex = on ? 0 : -1;
+      if (on && focus) t.focus();
+    });
+    $all('.panel').forEach(function (p) { p.hidden = p.getAttribute('data-panel') !== cat; });
+    renderSummary();
+    save();
+  }
+
+  /* ---------- Events ---------- */
+  function findRow(cat, id) {
+    for (var i = 0; i < state[cat].length; i++) if (state[cat][i].id === id) return state[cat][i];
+    return null;
+  }
+  function ctx(target) {
+    var panel = target.closest('[data-panel]');
+    var card = target.closest('[data-id]');
+    if (!panel || !card) return null;
+    var cat = panel.getAttribute('data-panel');
+    return { cat: cat, row: findRow(cat, Number(card.getAttribute('data-id'))) };
+  }
+
+  document.addEventListener('input', function (e) {
+    var t = e.target;
+    if (!t.matches || !t.matches('input[data-k]')) return;
+    var c = ctx(t);
+    if (!c || !c.row) return;
+    c.row[t.getAttribute('data-k')] = t.value;
+    if (t.getAttribute('data-k') === 'name') { renderSummary(); save(); return; }
+    recalc(c.cat);
+    save();
+  });
+
+  document.addEventListener('click', function (e) {
+    var t = e.target;
+    var tab = t.closest('.tab');
+    if (tab) { setTab(tab.getAttribute('data-tab')); return; }
+
+    var add = t.closest('[data-add]');
+    if (add) {
+      var cat = add.getAttribute('data-add');
+      if (state[cat].length >= Calc.MAX_ROWS) return;
+      state[cat].push(newRow(cat));
+      renderRows(cat);
+      save();
+      var cards = $all('[data-rows="' + cat + '"] .card');
+      var last = cards[cards.length - 1];
+      if (last) { var inp = $('input[data-k="price"]', last); if (inp) inp.focus(); }
+      return;
+    }
+
+    var rm = t.closest('[data-remove]');
+    if (rm) {
+      var c = ctx(rm);
+      if (!c || state[c.cat].length <= 1) return;
+      var id = Number(rm.getAttribute('data-remove'));
+      state[c.cat] = state[c.cat].filter(function (r) { return r.id !== id; });
+      renderRows(c.cat);
+      save();
+      return;
+    }
+
+    var seg = t.closest('[data-type]');
+    if (seg) {
+      var c2 = ctx(seg);
+      if (!c2 || !c2.row) return;
+      c2.row.type = seg.getAttribute('data-type');
+      renderRows(c2.cat);
+      save();
+      var card = $('[data-rows="formula"] [data-id="' + c2.row.id + '"] [data-type="' + c2.row.type + '"]');
+      if (card) card.focus();
+      return;
+    }
+
+    var aff = t.closest('a[data-coupang="PLACEHOLDER"]');
+    if (aff && aff.getAttribute('href') === '#') { e.preventDefault(); return; }
+  });
+
+  document.querySelector('.tabs').addEventListener('keydown', function (e) {
+    var keys = ['diaper', 'formula', 'wipes'];
+    var i = keys.indexOf(state.tab);
+    if (e.key === 'ArrowRight') { e.preventDefault(); setTab(keys[(i + 1) % 3], true); }
+    else if (e.key === 'ArrowLeft') { e.preventDefault(); setTab(keys[(i + 2) % 3], true); }
+  });
+
+  $('#copy-btn').addEventListener('click', copyResult);
+  $('#reset-btn').addEventListener('click', function () {
+    var tab = state.tab;
+    state = freshState();
+    state.tab = tab;
+    ['diaper', 'formula', 'wipes'].forEach(renderRows);
+    setTab(tab);
+    try { window.localStorage.removeItem(STORE_KEY); } catch (e) {}
+  });
+
+  /* ---------- Init ---------- */
+  ['diaper', 'formula', 'wipes'].forEach(function (c) {
+    state[c].forEach(function (r) { r.id = ++uid; });
+    renderRows(c);
+  });
+  setTab(state.tab);
+})();
+</script>
+</body>
+</html>
