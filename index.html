@@ -6,6 +6,7 @@
 <title>기저귀 단가 비교 계산기 | 분유 100g당·물티슈 장당 가격</title>
 <meta name="description" content="기저귀 개당 가격, 분유 100g당 가격, 물티슈 장당 가격을 가격·수량만 넣으면 바로 계산해요. 어떤 게 더 싼지 한눈에 비교해요.">
 <meta name="color-scheme" content="light dark">
+<link rel="icon" href="data:,">
 <meta name="theme-color" content="#F6F1EA" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#191715" media="(prefers-color-scheme: dark)">
 <meta name="naver-site-verification" content="fc09fed3d4ea61fda26421a21eb1f4f3737c572e">
@@ -141,6 +142,7 @@ h1{font-size:clamp(26px,7vw,34px);line-height:1.25;letter-spacing:-.03em;margin:
 }
 .card.is-best .card-no{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
 .card-head .name-input{flex:1;min-width:0}
+.card-sub{margin:0;padding:0 14px 0 48px;font-size:13px;color:var(--ink-2);line-height:1.45}
 .remove{
   flex:none;appearance:none;border:0;background:transparent;color:var(--ink-3);
   width:44px;height:44px;border-radius:10px;cursor:pointer;font-size:22px;line-height:1;
@@ -254,6 +256,67 @@ section.block h2{font-size:20px;letter-spacing:-.02em;margin:0 0 12px;font-weigh
   .fields{grid-template-columns:1fr 1fr 1fr}
 }
 @media (prefers-reduced-motion: reduce){ *{transition:none !important} }
+
+/* Ranking */
+.rank{margin:0 0 32px}
+.rank h2{font-size:20px;letter-spacing:-.02em;margin:0 0 2px;font-weight:800}
+.rank-meta{margin:0 0 10px;font-size:13px;color:var(--ink-3);font-variant-numeric:tabular-nums}
+.rank .disclosure{margin:0 0 8px}
+.auto-note{margin:0 0 12px;padding:8px 12px;font-size:13px;color:var(--ink-2);background:var(--surface-2);border:1px solid var(--line);border-radius:10px}
+.filters{display:flex;flex-direction:column;gap:6px;margin:0 0 10px}
+.chips{display:flex;gap:6px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding:2px 2px 4px;margin:0 -2px}
+.chips::-webkit-scrollbar{display:none}
+.chip{
+  flex:none;appearance:none;border:1px solid var(--line-strong);background:var(--surface);color:var(--ink-2);
+  font:inherit;font-size:14px;font-weight:600;min-height:44px;padding:0 14px;border-radius:999px;cursor:pointer;
+}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.rank-sort{margin:0 0 8px;font-size:13px;color:var(--ink-3)}
+.rank-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.rcard{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:12px 14px}
+.rcard.top{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent),var(--shadow)}
+.rcard.sold .r-top,.rcard.sold .r-meta{opacity:.6}
+.r-top{display:grid;grid-template-columns:26px minmax(0,1fr) auto;gap:10px;align-items:start}
+.r-no{
+  width:26px;height:26px;border-radius:50%;display:grid;place-items:center;margin-top:1px;
+  font-size:13px;font-weight:800;background:var(--surface-2);color:var(--ink-2);border:1px solid var(--line);
+}
+.rcard.top .r-no{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.r-name strong{display:block;font-size:15px;line-height:1.4;font-weight:700}
+.r-pack{display:block;font-size:13px;color:var(--ink-2);line-height:1.45}
+.r-price{text-align:right;font-variant-numeric:tabular-nums}
+.r-unit{display:block;font-size:20px;font-weight:800;letter-spacing:-.02em;white-space:nowrap;line-height:1.3}
+.r-unit small{font-size:12px;font-weight:600;color:var(--ink-2);margin-left:1px}
+.r-total{display:block;font-size:12px;color:var(--ink-2);white-space:nowrap}
+.r-meta{margin:4px 0 0 36px;font-size:12px;color:var(--ink-3)}
+.tag{display:inline-block;font-size:11px;font-weight:800;line-height:1.5;padding:0 7px;border-radius:999px;margin:3px 4px 0 0}
+.tag-sold{background:var(--ink-3);color:var(--surface)}
+.tag-verify{background:var(--warn-soft);color:var(--warn)}
+.r-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+.btn-sm{min-height:44px;font-size:15px;padding:0 10px;width:100%}
+.btn-cp{background:var(--accent);color:var(--accent-ink)}
+.btn-ghost{background:var(--surface-2);color:var(--ink);border:1px solid var(--line-strong)}
+.btn-ghost:hover{border-color:var(--accent)}
+.src-link{display:flex;align-items:center;justify-content:center;min-height:44px;font-size:14px;font-weight:600;color:var(--ink-2);text-decoration:underline;text-underline-offset:3px}
+.rank-more{
+  margin-top:10px;width:100%;min-height:48px;appearance:none;cursor:pointer;border:1px solid var(--line-strong);
+  background:transparent;color:var(--ink-2);font:inherit;font-weight:700;font-size:15px;border-radius:12px;
+}
+.rank-more[hidden],.r-actions [hidden]{display:none}
+.rank-empty{padding:16px;text-align:center;color:var(--ink-3);font-size:14px;background:var(--surface);border:1px dashed var(--line-strong);border-radius:var(--radius)}
+.rank-status{display:block;min-height:1.4em;margin-top:6px;font-size:13px;color:var(--accent-text);text-align:center}
+.calc-title{font-size:20px;letter-spacing:-.02em;margin:0 0 8px;font-weight:800;scroll-margin-top:80px}
+
+/* Product picker */
+.pick select{
+  padding-right:36px;font-weight:600;text-overflow:ellipsis;
+  background-image:linear-gradient(45deg,transparent 50%,var(--ink-3) 50%),linear-gradient(135deg,var(--ink-3) 50%,transparent 50%);
+  background-position:calc(100% - 18px) 52%,calc(100% - 13px) 52%;background-size:5px 5px;background-repeat:no-repeat;
+}
+.card{scroll-margin-top:80px}
+.card.flash{animation:flash 1.4s ease-out}
+@keyframes flash{0%{box-shadow:0 0 0 3px var(--accent),var(--shadow)}100%{box-shadow:var(--shadow)}}
+@media (prefers-reduced-motion: reduce){ .card.flash{animation:none} }
 </style>
 </head>
 <body>
@@ -261,14 +324,29 @@ section.block h2{font-size:20px;letter-spacing:-.02em;margin:0 0 12px;font-weigh
   <header>
     <p class="eyebrow">기저귀 · 분유 · 물티슈</p>
     <h1>육아용품 개당 단가 계산기</h1>
-    <p class="intro">기저귀, 분유, 물티슈 중 어떤 게 정말 싼지 헷갈리셨죠? 가격과 수량만 넣으면 1매·100g·100ml 기준 단가로 바로 비교해 드려요.</p>
+    <p class="intro">기저귀, 분유, 물티슈 중 어떤 게 정말 싼지 헷갈리셨죠? 상품만 고르면 1매·100g·100ml 기준 단가로 바로 비교해 드려요.</p>
   </header>
 
   <div class="tabs" role="tablist" aria-label="품목 선택">
-    <button class="tab" role="tab" id="tab-diaper" aria-controls="panel-diaper" aria-selected="true" data-tab="diaper">기저귀</button>
-    <button class="tab" role="tab" id="tab-formula" aria-controls="panel-formula" aria-selected="false" data-tab="formula" tabindex="-1">분유</button>
-    <button class="tab" role="tab" id="tab-wipes" aria-controls="panel-wipes" aria-selected="false" data-tab="wipes" tabindex="-1">물티슈</button>
+    <button class="tab" role="tab" id="tab-diaper" aria-controls="ranking panel-diaper" aria-selected="true" data-tab="diaper">기저귀</button>
+    <button class="tab" role="tab" id="tab-formula" aria-controls="ranking panel-formula" aria-selected="false" data-tab="formula" tabindex="-1">분유</button>
+    <button class="tab" role="tab" id="tab-wipes" aria-controls="ranking panel-wipes" aria-selected="false" data-tab="wipes" tabindex="-1">물티슈</button>
   </div>
+
+  <section class="rank" id="ranking" aria-labelledby="rank-title">
+    <h2 id="rank-title">개당 가격 순위</h2>
+    <p class="rank-meta" id="rank-meta">기준일 - · 출처 -</p>
+    <!-- 아래 순위 카드에 쿠팡 버튼이 있어서, 대가성 문구를 버튼보다 위에 둡니다. 지우지 마세요. -->
+    <p class="disclosure">이 페이지는 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.</p>
+    <p class="auto-note">가격은 하루 한 번 자동 업데이트돼요 · 실제 결제가는 판매처에서 확인하세요</p>
+    <div class="filters" id="rank-filters"></div>
+    <p class="rank-sort" id="rank-sort"></p>
+    <ol class="rank-list" id="rank-list"></ol>
+    <button type="button" class="rank-more" id="rank-more" hidden></button>
+    <span class="rank-status" id="rank-status" role="status"></span>
+  </section>
+
+  <h2 class="calc-title" id="calc-title">직접 비교해 보기</h2>
 
   <section class="panel" id="panel-diaper" role="tabpanel" aria-labelledby="tab-diaper" data-panel="diaper">
     <p class="hint">가격과 총 매수(팩당 매수 × 팩 수)를 넣으면 1매당 가격을 알려드려요.</p>
@@ -492,10 +570,70 @@ if (typeof module !== 'undefined' && module.exports) module.exports = Calc;
 /* CALC-END */
 </script>
 
+<script type="application/json" id="data-snapshot">{"products":[{"id":"huggies-naturemade-pants-4-80","category":"diaper","brand":"하기스","line":"네이처메이드","type":"팬티형","stage":"4단계","perPack":80,"packs":1},{"id":"huggies-naturemade-pants-5-66","category":"diaper","brand":"하기스","line":"네이처메이드","type":"팬티형","stage":"5단계","perPack":66,"packs":1},{"id":"huggies-naturemade-bamboo-band-3-48x3","category":"diaper","brand":"하기스","line":"네이처메이드 밤부","type":"밴드형","stage":"3단계","perPack":48,"packs":3},{"id":"huggies-naturemade-bamboo-band-4-40x3","category":"diaper","brand":"하기스","line":"네이처메이드 밤부","type":"밴드형","stage":"4단계","perPack":40,"packs":3},{"id":"huggies-naturemade-bamboo-band-5-34x3","category":"diaper","brand":"하기스","line":"네이처메이드 밤부","type":"밴드형","stage":"5단계","perPack":34,"packs":3,"soldOut":true},{"id":"huggies-naturemade-bamboo-pants-4-54x2","category":"diaper","brand":"하기스","line":"네이처메이드 밤부","type":"팬티형","stage":"4단계","perPack":54,"packs":2},{"id":"huggies-naturemade-bamboo-pants-5-44x2","category":"diaper","brand":"하기스","line":"네이처메이드 밤부","type":"팬티형","stage":"5단계","perPack":44,"packs":2},{"id":"mamypoko-supercomfort-pants-4-44x3","category":"diaper","brand":"마미포코","line":"슈퍼컴포트","type":"팬티형","stage":"4단계","perPack":44,"packs":3,"verify":true},{"id":"mamypoko-supercomfort-pants-5-36x3","category":"diaper","brand":"마미포코","line":"슈퍼컴포트","type":"팬티형","stage":"5단계","perPack":36,"packs":3,"verify":true},{"id":"huggies-maxdry-air-band-5-44x2","category":"diaper","brand":"하기스","line":"맥스드라이 에어","type":"밴드형","stage":"5단계","perPack":44,"packs":2,"verify":true},{"id":"huggies-magiccomfort-pants-5-38","category":"diaper","brand":"하기스","line":"매직컴포트","type":"팬티형","stage":"5단계","perPack":38,"packs":1},{"id":"pampers-babydry-pants-5-144","category":"diaper","brand":"팸퍼스","line":"베이비드라이","type":"팬티형","stage":"5단계","perPack":144,"packs":1},{"id":"mamypoko-kkuljam-pants-4-24x6","category":"diaper","brand":"마미포코","line":"꿀잠팬티","type":"팬티형","stage":"4단계","perPack":24,"packs":6,"verify":true},{"id":"naturalblossom-vegan-band-3-26x4","category":"diaper","brand":"네추럴블라썸","line":"비건 기저귀","type":"밴드형","stage":"3단계","perPack":26,"packs":4},{"id":"bosomi-actionfit-pants-l-30x4","category":"diaper","brand":"보솜이","line":"액션핏","type":"팬티형","stage":"대형","perPack":30,"packs":4},{"id":"huggies-maxdry-air-band-4-52","category":"diaper","brand":"하기스","line":"맥스드라이 에어","type":"밴드형","stage":"4단계","perPack":52,"packs":1,"verify":true},{"id":"huggies-magiccomfort-band-4-58","category":"diaper","brand":"하기스","line":"매직컴포트","type":"밴드형","stage":"4단계","perPack":58,"packs":1,"verify":true},{"id":"huggies-naturemade-pants-4-42","category":"diaper","brand":"하기스","line":"네이처메이드","type":"팬티형","stage":"4단계","perPack":42,"packs":1},{"id":"kindo-bebeguard-pants-4-36","category":"diaper","brand":"킨도","line":"베베가드","type":"팬티형","stage":"4단계","perPack":36,"packs":1},{"id":"kindo-oslim-air-pants-4-36x4","category":"diaper","brand":"킨도","line":"오슬림 에어","type":"팬티형","stage":"4단계","perPack":36,"packs":4,"verify":true},{"id":"maeil-absolute-myeongjak-1-800","category":"formula","brand":"매일","line":"앱솔루트 프리미엄 명작","form":"캔","stage":"1단계","unitAmount":800,"unit":"g","count":1},{"id":"maeil-absolute-sensitive-1-900","category":"formula","brand":"매일","line":"앱솔루트 센서티브","form":"캔","stage":"1단계","unitAmount":900,"unit":"g","count":1,"verify":true},{"id":"namyang-imperialxo-stick-1-14x20","category":"formula","brand":"남양","line":"임페리얼XO","form":"스틱","stage":"1단계","unitAmount":14,"unit":"g","count":20},{"id":"namyang-imperialxo-stick-2-14x20","category":"formula","brand":"남양","line":"임페리얼XO","form":"스틱","stage":"2단계","unitAmount":14,"unit":"g","count":20},{"id":"namyang-imperialxo-stick-3-14x20","category":"formula","brand":"남양","line":"임페리얼XO","form":"스틱","stage":"3단계","unitAmount":14,"unit":"g","count":20},{"id":"namyang-imperialdreamxo-can-1-800","category":"formula","brand":"남양","line":"임페리얼드림 XO","form":"캔","stage":"1단계","unitAmount":800,"unit":"g","count":1,"soldOut":true},{"id":"namyang-imom-can-1-800","category":"formula","brand":"남양","line":"아이엠마더","form":"캔","stage":"1단계","unitAmount":800,"unit":"g","count":1},{"id":"namyang-imom-stick-1-14x20","category":"formula","brand":"남양","line":"아이엠마더","form":"스틱","stage":"1단계","unitAmount":14,"unit":"g","count":20},{"id":"namyang-imom-liquid-2-240x6","category":"formula","brand":"남양","line":"아이엠마더","form":"액상","stage":"2단계","unitAmount":240,"unit":"ml","count":6},{"id":"namyang-imom-goat-stick-1-14x12","category":"formula","brand":"남양","line":"아이엠마더 유기농 산양","form":"스틱","stage":"1단계","unitAmount":14,"unit":"g","count":12},{"id":"ildong-truemom-newclass-can-1-800","category":"formula","brand":"일동후디스","line":"트루맘 뉴클래스","form":"캔","stage":"1단계","unitAmount":800,"unit":"g","count":1},{"id":"ildong-truemom-newclassqueen-liquid-180x6","category":"formula","brand":"일동후디스","line":"트루맘 뉴클래스퀸","form":"액상","stage":"0~12개월","unitAmount":180,"unit":"ml","count":6},{"id":"ildong-goat-signature-can-1-800x6","category":"formula","brand":"일동후디스","line":"산양분유 시그니처","form":"캔","stage":"1단계","unitAmount":800,"unit":"g","count":6,"verify":true},{"id":"aptamil-profutura-pre-800x2","category":"formula","brand":"압타밀","line":"프로푸트라 (독일내수용)","form":"캔","stage":"프레","unitAmount":800,"unit":"g","count":2},{"id":"hipp-combiotic-1-600x6","category":"formula","brand":"힙","line":"콤비오틱","form":"캔","stage":"1단계","unitAmount":600,"unit":"g","count":6},{"id":"illuma-1-800","category":"formula","brand":"일루마","line":"일루마","form":"캔","stage":"1단계","unitAmount":800,"unit":"g","count":1},{"id":"bebesoop-premier-70x10","category":"wipes","brand":"베베숲","line":"프리미어","perPack":70,"packs":10,"gsm":70},{"id":"bebesoop-signature-blue-70x20","category":"wipes","brand":"베베숲","line":"시그니처 블루","perPack":70,"packs":20,"gsm":75},{"id":"bebesoop-signature-with-blue-70x10","category":"wipes","brand":"베베숲","line":"시그니처 위드 블루","perPack":70,"packs":10,"gsm":75},{"id":"bebesoop-signature-with-red-70x10","category":"wipes","brand":"베베숲","line":"시그니처 위드 레드","perPack":70,"packs":10,"gsm":80},{"id":"huggies-naturemade-biodeg-wipes-70x10","category":"wipes","brand":"하기스","line":"네이처메이드 생분해","perPack":70,"packs":10,"gsm":null},{"id":"huggies-premium-wipes-72x10","category":"wipes","brand":"하기스","line":"프리미엄","perPack":72,"packs":10,"gsm":65},{"id":"jalpul-naeez-simple-70x20","category":"wipes","brand":"잘풀리는집","line":"네이즈 심플","perPack":70,"packs":20,"gsm":55},{"id":"superdaddy-excellent82-70x20","category":"wipes","brand":"슈퍼대디","line":"엑설런트 82","perPack":70,"packs":20,"gsm":82},{"id":"bosomi-13mu-cap-60x9","category":"wipes","brand":"보솜이","line":"13무 안심 (캡)","perPack":60,"packs":9,"gsm":50,"soldOut":true},{"id":"kurlys-signature-wipes-70x10","category":"wipes","brand":"컬리스","line":"시그니처","perPack":70,"packs":10,"gsm":70,"verify":true},{"id":"brown-premium-70x10","category":"wipes","brand":"브라운","line":"프리미엄 브라운","perPack":70,"packs":10,"gsm":80},{"id":"brown-original-plus-80x10","category":"wipes","brand":"브라운","line":"오리지널 플러스","perPack":80,"packs":10,"gsm":55},{"id":"sum-signature-premium-63-70x10","category":"wipes","brand":"숨","line":"시그니처 프리미엄 63g","perPack":70,"packs":10,"gsm":63},{"id":"soondoongi-premium-emboss-70x10","category":"wipes","brand":"순둥이","line":"프리미엄 무향 엠보싱","perPack":70,"packs":10,"gsm":65}],"prices":{"updated":"2026-11-21","source":"초기 조사값","items":{"huggies-naturemade-pants-4-80":{"price":49990,"seller":"코스트코","url":"https://www.costco.co.kr/BabyKidsToysPets/Diapers/Diapers/Huggies-Naturemade-Panty-Type-Size-4-80ct/p/699904","checked":"2026-11-21"},"huggies-naturemade-pants-5-66":{"price":49990,"seller":"코스트코","url":"https://www.costco.co.kr/BabyKidsToysPets/Diapers/Diapers/Huggies-Naturemade-Panty-Type-5th-Stage-66ct/p/699905","checked":"2026-11-21"},"huggies-naturemade-bamboo-band-3-48x3":{"price":59900,"seller":"코스트코","url":"https://www.costco.co.kr/BabyKidsToysPets/Diapers/Diapers/Huggies-Naturemade-Bamboo-Band-Type-3rd-Stage-48x3/p/690303","checked":"2026-11-21"},"huggies-naturemade-bamboo-band-4-40x3":{"price":59900,"seller":"코스트코","url":"https://www.costco.co.kr/BabyKidsToysPets/Diapers/Diapers/Huggies-Naturemade-Bamboo-Band-Type-4th-Stage-40x3/p/690304","checked":"2026-11-21"},"huggies-naturemade-bamboo-band-5-34x3":{"price":59900,"seller":"코스트코","url":"https://www.costco.co.kr/BabyKidsToysPets/Diapers/Diapers/Huggies-Naturemade-Bamboo-Band-Type-5th-Stage-34x3/p/690305","checked":"2026-11-21","soldOut":true},"huggies-naturemade-bamboo-pants-4-54x2":{"price":64900,"seller":"코스트코","url":"https://www.costco.co.kr/BabyKidsToysPets/Diapers/Diapers/Huggies-Naturemade-Bamboo-Panty-Type-4th-Stage/p/690504","checked":"2026-11-21"},"huggies-naturemade-bamboo-pants-5-44x2":{"price":64900,"seller":"코스트코","url":"https://www.costco.co.kr/BabyKidsToysPets/Diapers/Diapers/Huggies-Naturemade-Bamboo-Panty-Type-5th-Stage/p/690505","checked":"2026-11-21"},"mamypoko-supercomfort-pants-4-44x3":{"price":39990,"seller":"코스트코","url":"https://www.costco.co.kr/BabyKidsToysPets/Diapers/Diapers/Mamypoko-Super-Comfort-Pants-S4-44P-x-3/p/691345","checked":"2026-11-21"},"mamypoko-supercomfort-pants-5-36x3":{"price":39990,"seller":"코스트코","url":"https://www.costco.co.kr/BabyKidsToysPets/Diapers/Diapers/Mamypoko-Super-Comfort-Pants-S5-36P-x-3/p/691346","checked":"2026-11-21"},"huggies-maxdry-air-band-5-44x2":{"price":71000,"seller":"SSG(G마켓 입점)","url":"https://m.ssg.com/item/itemView.ssg?itemId=1000894869076","checked":"2026-11-21"},"huggies-magiccomfort-pants-5-38":{"price":27440,"seller":"SSG","url":"https://m.ssg.com/item/itemView.ssg?itemId=1000804731702","checked":"2026-11-21"},"pampers-babydry-pants-5-144":{"price":92500,"seller":"SSG","url":"https://m.ssg.com/item/itemView.ssg?itemId=1000645366287","checked":"2026-11-21"},"mamypoko-kkuljam-pants-4-24x6":{"price":54655,"seller":"SSG","url":"https://www.ssg.com/item/itemView.ssg?itemId=1000075837270","checked":"2026-11-21"},"naturalblossom-vegan-band-3-26x4":{"price":45505,"seller":"SSG","url":"https://www.ssg.com/item/itemView.ssg?itemId=1000051361112","checked":"2026-11-21"},"bosomi-actionfit-pants-l-30x4":{"price":36000,"seller":"SSG","url":"https://m.ssg.com/item/itemView.ssg?itemId=1000711075549","checked":"2026-11-21"},"huggies-maxdry-air-band-4-52":{"price":31140,"seller":"이마트몰","url":"https://emart.ssg.com/item/itemView.ssg?itemId=1000822917453&siteNo=7009&salestrNo=2551","checked":"2026-11-21"},"huggies-magiccomfort-band-4-58":{"price":31440,"seller":"이마트몰","url":"https://emart.ssg.com/item/itemView.ssg?itemId=1000794130767&siteNo=7009&salestrNo=2551","checked":"2026-11-21"},"huggies-naturemade-pants-4-42":{"price":35360,"seller":"이마트몰","url":"https://emart.ssg.com/item/itemView.ssg?itemId=1000736197348&siteNo=7009&salestrNo=2551","checked":"2026-11-21"},"kindo-bebeguard-pants-4-36":{"price":24600,"seller":"이마트몰","url":"https://emart.ssg.com/item/itemView.ssg?itemId=1000632938144&siteNo=7009&salestrNo=2551","checked":"2026-11-21"},"maeil-absolute-myeongjak-1-800":{"price":22000,"seller":"컬리","url":"https://www.kurly.com/goods/1001188447","checked":"2026-11-21"},"maeil-absolute-sensitive-1-900":{"price":33000,"seller":"컬리","url":"https://www.kurly.com/goods/1001188472","checked":"2026-11-21"},"namyang-imperialxo-stick-1-14x20":{"price":10000,"seller":"컬리","url":"https://www.kurly.com/goods/1001299708","checked":"2026-11-21"},"namyang-imperialxo-stick-2-14x20":{"price":10000,"seller":"컬리","url":"https://www.kurly.com/goods/1001299710","checked":"2026-11-21"},"namyang-imperialxo-stick-3-14x20":{"price":10000,"seller":"컬리","url":"https://www.kurly.com/goods/1001299712","checked":"2026-11-21"},"namyang-imperialdreamxo-can-1-800":{"price":19000,"seller":"SSG.COM","url":"https://www.ssg.com/item/itemView.ssg?itemId=1000005066374","checked":"2026-11-21","soldOut":true},"namyang-imom-can-1-800":{"price":33000,"seller":"컬리","url":"https://www.kurly.com/goods/1001299168","checked":"2026-11-21"},"namyang-imom-stick-1-14x20":{"price":15000,"seller":"컬리","url":"https://www.kurly.com/goods/1001298466","checked":"2026-11-21"},"namyang-imom-liquid-2-240x6":{"price":9300,"seller":"컬리","url":"https://www.kurly.com/goods/1001298464","checked":"2026-11-21"},"namyang-imom-goat-stick-1-14x12":{"price":9900,"seller":"컬리","url":"https://www.kurly.com/goods/1001300258","checked":"2026-11-21"},"ildong-truemom-newclass-can-1-800":{"price":39800,"seller":"컬리","url":"https://www.kurly.com/goods/1001310032","checked":"2026-11-21"},"ildong-truemom-newclassqueen-liquid-180x6":{"price":9900,"seller":"SSG.COM","url":"https://www.ssg.com/item/itemView.ssg?itemId=1000038847953&siteNo=6001","checked":"2026-11-21"},"ildong-goat-signature-can-1-800x6":{"price":329400,"seller":"SSG.COM (일동후디스 본사 직영)","url":"https://www.ssg.com/item/itemView.ssg?itemId=1000615352167","checked":"2026-11-21"},"aptamil-profutura-pre-800x2":{"price":86610,"seller":"SSG.COM ((주)림인터내셔널)","url":"https://www.ssg.com/item/itemView.ssg?itemId=1000781802774","checked":"2026-11-21"},"hipp-combiotic-1-600x6":{"price":156400,"seller":"SSG.COM (하이유로)","url":"https://www.ssg.com/item/itemView.ssg?itemId=1000760584181","checked":"2026-11-21"},"illuma-1-800":{"price":71900,"seller":"컬리","url":"https://www.kurly.com/goods/5025960","checked":"2026-11-21"},"bebesoop-premier-70x10":{"price":14790,"seller":"다나와 최저가 (판매처 미표기)","url":"https://m.danawa.com/product/product.html?code=3670984","checked":"2026-11-21"},"bebesoop-signature-blue-70x20":{"price":65361,"seller":"SSG.COM (지마켓 위탁)","url":"https://m.ssg.com/item/itemView.ssg?itemId=1000667303396","checked":"2026-11-21"},"bebesoop-signature-with-blue-70x10":{"price":15970,"seller":"와이유 스토어 (다나와 최저가)","url":"https://prod.danawa.com/info/?pcode=15755213","checked":"2026-11-21"},"bebesoop-signature-with-red-70x10":{"price":18990,"seller":"CJ온스타일 (다나와 최저가)","url":"https://prod.danawa.com/info/?pcode=18717056","checked":"2026-11-21"},"huggies-naturemade-biodeg-wipes-70x10":{"price":22230,"seller":"옥션 (다나와 최저가)","url":"https://prod.danawa.com/info/?pcode=17856689","checked":"2026-11-21"},"huggies-premium-wipes-72x10":{"price":17030,"seller":"11번가 (다나와 최저가)","url":"https://prod.danawa.com/info/?pcode=14191400","checked":"2026-11-21"},"jalpul-naeez-simple-70x20":{"price":20430,"seller":"옥션 (다나와 최저가)","url":"https://prod.danawa.com/info/?pcode=21629012","checked":"2026-11-21"},"superdaddy-excellent82-70x20":{"price":29910,"seller":"11번가 (다나와 최저가)","url":"https://prod.danawa.com/info/?pcode=15670688","checked":"2026-11-21"},"bosomi-13mu-cap-60x9":{"price":16600,"seller":"SSG.COM","url":"https://www.ssg.com/item/itemView.ssg?itemId=1000005586838","checked":"2026-11-21","soldOut":true},"kurlys-signature-wipes-70x10":{"price":17800,"seller":"컬리","url":"https://www.kurly.com/goods/5061288","checked":"2026-11-21"},"brown-premium-70x10":{"price":24900,"seller":"컬리","url":"https://www.kurly.com/goods/1000110975","checked":"2026-11-21"},"brown-original-plus-80x10":{"price":18900,"seller":"컬리","url":"https://www.kurly.com/goods/1000106197","checked":"2026-11-21"},"sum-signature-premium-63-70x10":{"price":15900,"seller":"컬리","url":"https://www.kurly.com/goods/1001931104","checked":"2026-11-21"},"soondoongi-premium-emboss-70x10":{"price":22110,"seller":"11번가 (다나와 최저가)","url":"https://prod.danawa.com/info/?pcode=5473721","checked":"2026-11-21"}}}}</script>
+
 <script>
 (function () {
   'use strict';
+
+  // COUPANG-LINKS-START
+  var COUPANG_LINKS = {
+    "huggies-naturemade-pants-4-80": "https://link.coupang.com/a/iQYGAAaxEa",
+    "huggies-naturemade-pants-5-66": "https://link.coupang.com/a/iQXPMzGbM4",
+    "huggies-naturemade-bamboo-band-3-48x3": "https://link.coupang.com/a/iQXRhkOWce",
+    "huggies-naturemade-bamboo-band-4-40x3": "https://link.coupang.com/a/iQXShLgqXI",
+    "huggies-naturemade-bamboo-band-5-34x3": "https://link.coupang.com/a/iQXTPFHcRg",
+    "huggies-naturemade-bamboo-pants-4-54x2": "https://link.coupang.com/a/iQXUOfxs2m",
+    "huggies-naturemade-bamboo-pants-5-44x2": "https://link.coupang.com/a/iQXVTlmAg0",
+    "mamypoko-supercomfort-pants-4-44x3": "https://link.coupang.com/a/iQXXbxKoGy",
+    "mamypoko-supercomfort-pants-5-36x3": "https://link.coupang.com/a/iQXYj55J00",
+    "huggies-maxdry-air-band-5-44x2": "https://link.coupang.com/a/iQXZmdQp2q",
+    "huggies-magiccomfort-pants-5-38": "https://link.coupang.com/a/iQX0vYW8NE",
+    "pampers-babydry-pants-5-144": "https://link.coupang.com/a/iQX1IkiQ7U",
+    "mamypoko-kkuljam-pants-4-24x6": "https://link.coupang.com/a/iQX2KjZThI",
+    "naturalblossom-vegan-band-3-26x4": "https://link.coupang.com/a/iQX3UATGCa",
+    "bosomi-actionfit-pants-l-30x4": "https://link.coupang.com/a/iQX4KdbJYW",
+    "huggies-maxdry-air-band-4-52": "https://link.coupang.com/a/iQX5Rnu8ce",
+    "huggies-magiccomfort-band-4-58": "https://link.coupang.com/a/iQX6RCMTm0",
+    "huggies-naturemade-pants-4-42": "https://link.coupang.com/a/iQX7ZQlFwi",
+    "kindo-bebeguard-pants-4-36": "https://link.coupang.com/a/iQX8WjCrRI",
+    "kindo-oslim-air-pants-4-36x4": "https://link.coupang.com/a/iQX90QFg1Q",
+    "maeil-absolute-myeongjak-1-800": "https://link.coupang.com/a/iQYbmuEFsy",
+    "maeil-absolute-sensitive-1-900": "https://link.coupang.com/a/iQYcjcdpfM",
+    "namyang-imperialxo-stick-1-14x20": "https://link.coupang.com/a/iQYdd3gVpc",
+    "namyang-imperialxo-stick-2-14x20": "https://link.coupang.com/a/iQYehn6VYi",
+    "namyang-imperialxo-stick-3-14x20": "https://link.coupang.com/a/iQYfoZObBc",
+    "namyang-imperialdreamxo-can-1-800": "https://link.coupang.com/a/iQYgeyG3pc",
+    "namyang-imom-can-1-800": "https://link.coupang.com/a/iQYhiLntam",
+    "namyang-imom-stick-1-14x20": "https://link.coupang.com/a/iQYihVli6C",
+    "namyang-imom-liquid-2-240x6": "https://link.coupang.com/a/iQYi8s7yW4",
+    "namyang-imom-goat-stick-1-14x12": "https://link.coupang.com/a/iQYka1s9Gm",
+    "ildong-truemom-newclass-can-1-800": "https://link.coupang.com/a/iQYlnDqPK0",
+    "ildong-truemom-newclassqueen-liquid-180x6": "https://link.coupang.com/a/iQYmGuPfPg",
+    "ildong-goat-signature-can-1-800x6": "https://link.coupang.com/a/iQYnQZlNoO",
+    "aptamil-profutura-pre-800x2": "https://link.coupang.com/a/iQYoPTysYS",
+    "hipp-combiotic-1-600x6": "https://link.coupang.com/a/iQYpHw3YGW",
+    "illuma-1-800": "https://link.coupang.com/a/iQYqBILrm8",
+    "bebesoop-premier-70x10": "https://link.coupang.com/a/iQYrw6Bcpo",
+    "bebesoop-signature-blue-70x20": "https://link.coupang.com/a/iQYsy3y7um",
+    "bebesoop-signature-with-blue-70x10": "https://link.coupang.com/a/iQYtTBipMa",
+    "bebesoop-signature-with-red-70x10": "https://link.coupang.com/a/iQYuMsJb8S",
+    "huggies-naturemade-biodeg-wipes-70x10": "https://link.coupang.com/a/iQYv5mNJSK",
+    "huggies-premium-wipes-72x10": "https://link.coupang.com/a/iQYwY5re4y",
+    "jalpul-naeez-simple-70x20": "https://link.coupang.com/a/iQYx0CA91g",
+    "superdaddy-excellent82-70x20": "https://link.coupang.com/a/iQYy6eIS7x",
+    "bosomi-13mu-cap-60x9": "https://link.coupang.com/a/iQYz3X8vT2",
+    "kurlys-signature-wipes-70x10": "https://link.coupang.com/a/iQYATZWYg0",
+    "brown-premium-70x10": "https://link.coupang.com/a/iQYBM2ie5c",
+    "brown-original-plus-80x10": "https://link.coupang.com/a/iQYCRi3US4",
+    "sum-signature-premium-63-70x10": "https://link.coupang.com/a/iQYD6vHb0C",
+    "soondoongi-premium-emboss-70x10": "https://link.coupang.com/a/iQYFvF4ZGK"
+  };
+  // COUPANG-LINKS-END
+
   var STORE_KEY = 'babyUnitCalc.v1';
+  var CATS = ['diaper', 'formula', 'wipes'];
+  var RANK_LIMIT = 5;
   var CAT = {
     diaper: { label: '기저귀', calc: Calc.diaper },
     formula: { label: '분유', calc: Calc.formula },
@@ -530,24 +668,155 @@ if (typeof module !== 'undefined' && module.exports) module.exports = Calc;
     stick: { size: '스틱 1개', sizeUnit: 'g', count: '스틱 개수', countUnit: '개', sizePh: '14', countPh: '20' },
     liquid: { size: '1개 용량', sizeUnit: 'ml', count: '개수', countUnit: '개', sizePh: '200', countPh: '24' }
   };
+  var FORM_TO_TYPE = { '캔': 'can', '스틱': 'stick', '액상': 'liquid' };
+  /* Editing one of these turns a product-picked row into "직접 입력" (ship/disc/name stay linked). */
+  var DETACH_KEYS = { price: 1, perPack: 1, packs: 1, size: 1, count: 1, gsm: 1 };
 
+  /* ---------- Data (embedded snapshot first, then live JSON if reachable) ---------- */
+  var DATA = { products: [], prices: { updated: '', source: '', items: {} }, byId: {} };
+
+  function validProducts(a) {
+    return Array.isArray(a) && a.length > 0 && a.every(function (p) {
+      return p && typeof p.id === 'string' && CAT[p.category];
+    });
+  }
+  function validPrices(o) { return !!(o && typeof o === 'object' && o.items && typeof o.items === 'object'); }
+  function setData(products, prices) {
+    if (validProducts(products)) {
+      DATA.products = products;
+      DATA.byId = {};
+      products.forEach(function (p) { DATA.byId[p.id] = p; });
+    }
+    if (validPrices(prices)) DATA.prices = prices;
+  }
+  (function readSnapshot() {
+    try {
+      var s = JSON.parse(document.getElementById('data-snapshot').textContent);
+      setData(s && s.products, s && s.prices);
+    } catch (e) { /* keep empty */ }
+  })();
+
+  function priceOf(p) {
+    var pr = DATA.prices.items[p.id];
+    return pr && typeof pr.price === 'number' && isFinite(pr.price) && pr.price >= 0 ? pr : null;
+  }
+  function isSoldOut(p) {
+    var pr = DATA.prices.items[p.id];
+    if (pr && typeof pr.soldOut === 'boolean') return pr.soldOut;
+    return !!p.soldOut;
+  }
+  function groupOf(p) { return p.category === 'formula' ? (p.form === '액상' ? 'liquid' : 'powder') : 'all'; }
+  function productName(p) {
+    var kind = p.category === 'diaper' ? p.type : (p.category === 'formula' ? p.form : '');
+    return [p.brand, p.line, kind, p.stage].filter(Boolean).join(' ');
+  }
+  function packText(p) {
+    if (p.category === 'formula') {
+      var u = p.unit || 'g';
+      if (p.form === '캔') return p.count > 1 ? p.unitAmount + u + ' × ' + p.count + '캔' : p.unitAmount + u + ' 1캔';
+      return p.unitAmount + u + ' × ' + p.count + '개';
+    }
+    var t = p.packs > 1 ? p.perPack + '매 × ' + p.packs + '팩 (총 ' + (p.perPack * p.packs) + '매)' : p.perPack + '매';
+    if (p.category === 'wipes' && p.gsm != null) t += ' · ' + p.gsm + 'gsm';
+    return t;
+  }
+  /** Second line under a calculator row title: stage/type + pack, always fully visible (wraps). */
+  function subText(p) {
+    var kind = p.category === 'diaper' ? p.type : (p.category === 'formula' ? p.form : '');
+    var head = [kind, p.stage].filter(Boolean).join(' ');
+    return (head ? head + ' · ' : '') + packText(p);
+  }
+  /** Product -> calculator row values (strings, like user input). */
+  function productValues(p) {
+    var pr = priceOf(p);
+    var v = { price: pr ? String(pr.price) : '' };
+    if (p.category === 'formula') {
+      v.type = FORM_TO_TYPE[p.form] || 'can';
+      v.size = String(p.unitAmount);
+      v.count = String(p.count || 1);
+    } else {
+      v.perPack = String(p.perPack);
+      v.packs = String(p.packs || 1);
+      if (p.category === 'wipes') v.gsm = p.gsm != null ? String(p.gsm) : '';
+    }
+    return v;
+  }
+  function itemOf(p) {
+    var pr = priceOf(p);
+    var res = pr ? CAT[p.category].calc(productValues(p)) : { ok: false };
+    return { p: p, pr: pr, soldOut: isSoldOut(p), res: res };
+  }
+
+  /* ---------- Ranking filters ---------- */
+  var DEFAULT_FILTERS = { diaper: { stage: 'all', type: 'all' }, formula: { form: 'powder', stage: 'all' }, wipes: { gsm: 'all' } };
+  /* Default diaper stage = most common numbered stage among priced, in-stock diapers (same-size comparison first). */
+  (function () {
+    var cnt = {}, best = null;
+    DATA.products.forEach(function (p) {
+      if (p.category !== 'diaper' || !/^\d+단계$/.test(p.stage || '') || !priceOf(p) || isSoldOut(p)) return;
+      cnt[p.stage] = (cnt[p.stage] || 0) + 1;
+      if (!best || cnt[p.stage] > cnt[best]) best = p.stage;
+    });
+    if (best && cnt[best] >= 2) DEFAULT_FILTERS.diaper.stage = best;
+  })();
+  var filters = JSON.parse(JSON.stringify(DEFAULT_FILTERS));
+  var expanded = { diaper: false, formula: false, wipes: false };
+  var GSM_BUCKETS = [['all', '전체'], ['lt60', '60gsm 미만'], ['60to74', '60~74gsm'], ['gte75', '75gsm 이상']];
+
+  function gsmBucket(g) {
+    if (g == null || !isFinite(g)) return null;
+    return g < 60 ? 'lt60' : (g < 75 ? '60to74' : 'gte75');
+  }
+  function pass(p, f) {
+    if (p.category === 'diaper') {
+      return (f.stage === 'all' || p.stage === f.stage) && (f.type === 'all' || p.type === f.type);
+    }
+    if (p.category === 'formula') {
+      return groupOf(p) === f.form && (f.stage === 'all' || p.stage === f.stage);
+    }
+    return f.gsm === 'all' || gsmBucket(p.gsm) === f.gsm;
+  }
+  function stageKey(s) {
+    if (/^(프레|pre)$/i.test(s)) return 0;
+    var m = /^(\d+)단계$/.exec(s);
+    return m ? Number(m[1]) : 100;
+  }
+  function stageOptions(list) {
+    var seen = [];
+    list.forEach(function (p) { if (p.stage && seen.indexOf(p.stage) < 0) seen.push(p.stage); });
+    return seen.map(function (s, i) { return { s: s, i: i }; })
+      .sort(function (a, b) { return (stageKey(a.s) - stageKey(b.s)) || (a.i - b.i); })
+      .map(function (x) { return x.s; });
+  }
+  /** Priced products of a category passing filter f, cheapest first, sold-out last. */
+  function ranked(cat, f) {
+    return DATA.products
+      .filter(function (p) { return p.category === cat && pass(p, f); })
+      .map(itemOf)
+      .filter(function (it) { return it.res.ok; })
+      .sort(function (a, b) {
+        if (a.soldOut !== b.soldOut) return a.soldOut ? 1 : -1;
+        return a.res.value - b.res.value;
+      });
+  }
+
+  /* ---------- State ---------- */
   var uid = 0;
   function newRow(cat) {
-    var r = { id: ++uid, name: '' };
+    var r = { id: ++uid, name: '', pid: '' };
     FIELDS[cat].forEach(function (f) { r[f.k] = f.def || ''; });
     if (cat === 'formula') r.type = 'can';
     return r;
   }
-  function freshState() {
+  function freshState(auto) {
     return {
       tab: 'diaper',
+      autoFill: { diaper: auto, formula: auto, wipes: auto },
       diaper: [newRow('diaper'), newRow('diaper')],
       formula: [newRow('formula'), newRow('formula')],
       wipes: [newRow('wipes'), newRow('wipes')]
     };
   }
-
-  var state = load() || freshState();
 
   function load() {
     try {
@@ -555,13 +824,16 @@ if (typeof module !== 'undefined' && module.exports) module.exports = Calc;
       if (!raw) return null;
       var s = JSON.parse(raw);
       if (!s || typeof s !== 'object') return null;
-      var ok = ['diaper', 'formula', 'wipes'].every(function (c) {
+      var ok = CATS.every(function (c) {
         return Array.isArray(s[c]) && s[c].length >= 1 && s[c].length <= Calc.MAX_ROWS;
       });
       if (!ok) return null;
-      ['diaper', 'formula', 'wipes'].forEach(function (c) {
-        s[c] = s[c].map(function (old) {
+      var out = { tab: CAT[s.tab] ? s.tab : 'diaper', autoFill: {} };
+      CATS.forEach(function (c) {
+        out.autoFill[c] = !!(s.autoFill && s.autoFill[c] === true);
+        out[c] = s[c].map(function (old) {
           var r = newRow(c);
+          if (!old || typeof old !== 'object') return r;
           Object.keys(r).forEach(function (k) {
             if (k !== 'id' && typeof old[k] === 'string') r[k] = old[k].slice(0, 60);
           });
@@ -569,10 +841,11 @@ if (typeof module !== 'undefined' && module.exports) module.exports = Calc;
           return r;
         });
       });
-      if (!CAT[s.tab]) s.tab = 'diaper';
-      return s;
+      return out;
     } catch (e) { return null; }
   }
+  var state = load() || freshState(true);
+
   var saveTimer = null;
   function save() {
     clearTimeout(saveTimer);
@@ -580,6 +853,56 @@ if (typeof module !== 'undefined' && module.exports) module.exports = Calc;
       try { window.localStorage.setItem(STORE_KEY, JSON.stringify(state)); } catch (e) { /* private mode etc. */ }
     }, 250);
   }
+
+  function fillRow(row, p) {
+    var v = productValues(p);
+    Object.keys(v).forEach(function (k) { row[k] = v[k]; });
+    row.pid = p.id;
+    row.name = productName(p).slice(0, 40);
+    row.ship = '0';
+    row.disc = '0';
+  }
+  /** Re-sync rows that point at a product (new prices); unlink rows whose product vanished. */
+  function syncLinked(cat) {
+    state[cat].forEach(function (row) {
+      if (!row.pid) return;
+      var p = DATA.byId[row.pid];
+      if (!p || p.category !== cat) { row.pid = ''; return; }
+      var v = productValues(p);
+      Object.keys(v).forEach(function (k) { row[k] = v[k]; });
+    });
+  }
+  function allEmpty(cat) {
+    return state[cat].every(function (r) { return !r.pid && !String(r.price || '').trim(); });
+  }
+  /** Zero-input start: the 2 cheapest in-stock products of the tab's default filter. */
+  function prefill(cat) {
+    var pool = ranked(cat, DEFAULT_FILTERS[cat]).filter(function (it) { return !it.soldOut; });
+    if (cat === 'wipes' && pool.length) {
+      // compare like with like: 2nd pick from the same gsm bucket as the cheapest, if any
+      var b0 = gsmBucket(pool[0].p.gsm);
+      var same = pool.slice(1).filter(function (it) { return gsmBucket(it.p.gsm) === b0; });
+      pool = [pool[0]].concat(same.length ? same : pool.slice(1));
+    }
+    if (cat === 'diaper' && pool.length) {
+      // compare like with like: cheapest pair sharing the same stage AND type (pool is already cheapest-first)
+      var byKey = {}, pair = null;
+      pool.forEach(function (it) {
+        var k = it.p.stage + '|' + it.p.type;
+        (byKey[k] = byKey[k] || []).push(it);
+        if (!pair && byKey[k].length === 2) pair = byKey[k];
+      });
+      if (pair) pool = pair;
+    }
+    var picks = pool.slice(0, 2);
+    if (!picks.length) return false;
+    var rows = [newRow(cat), newRow(cat)];
+    picks.forEach(function (it, i) { fillRow(rows[i], it.p); });
+    state[cat] = rows;
+    state.autoFill[cat] = true;
+    return true;
+  }
+  function touch(cat) { if (state.autoFill[cat]) state.autoFill[cat] = false; }
 
   /* ---------- DOM helpers ---------- */
   function el(tag, attrs, children) {
@@ -613,6 +936,44 @@ if (typeof module !== 'undefined' && module.exports) module.exports = Calc;
     addBtn.textContent = state[cat].length >= Calc.MAX_ROWS ? '최대 ' + Calc.MAX_ROWS + '개까지 비교할 수 있어요' : '+ 상품 추가';
     recalc(cat);
   }
+  /** Re-render while keeping keyboard focus/caret (used when live data arrives). */
+  function renderRowsKeepFocus(cat) {
+    var a = document.activeElement;
+    var id = a && a.id && a.closest && a.closest('[data-rows="' + cat + '"]') ? a.id : null;
+    var sel = null;
+    try { if (id && a.selectionStart != null) sel = [a.selectionStart, a.selectionEnd]; } catch (e) {}
+    renderRows(cat);
+    if (id) {
+      var n = document.getElementById(id);
+      if (n) { n.focus(); try { if (sel) n.setSelectionRange(sel[0], sel[1]); } catch (e) {} }
+    }
+  }
+
+  function buildPicker(cat, row) {
+    var id = cat + '-' + row.id + '-pick';
+    var select = el('select', { id: id, 'data-pick': '1' });
+    select.appendChild(el('option', { value: '', text: '직접 입력' }));
+    var groups = {};
+    var order = [];
+    DATA.products.forEach(function (p) {
+      if (p.category !== cat) return;
+      if (!groups[p.brand]) { groups[p.brand] = []; order.push(p.brand); }
+      groups[p.brand].push(p);
+    });
+    order.forEach(function (brand) {
+      var og = el('optgroup', { label: brand });
+      groups[brand].forEach(function (p) {
+        var kind = cat === 'diaper' ? p.type : (cat === 'formula' ? p.form : '');
+        var label = [p.line, kind, p.stage].filter(Boolean).join(' ') + ' · ' + packText(p).replace(/ \(총 \d+매\)/, '');
+        if (!priceOf(p)) label += ' (가격 직접 입력)';
+        else if (isSoldOut(p)) label += ' (품절)';
+        og.appendChild(el('option', { value: p.id, text: label }));
+      });
+      select.appendChild(og);
+    });
+    select.value = row.pid && DATA.byId[row.pid] ? row.pid : '';
+    return el('div', { class: 'field full pick' }, [el('label', { for: id, text: '상품 선택' }), select]);
+  }
 
   function buildCard(cat, row, i) {
     var card = el('article', { class: 'card', 'data-id': String(row.id) });
@@ -633,8 +994,11 @@ if (typeof module !== 'undefined' && module.exports) module.exports = Calc;
     head.lastChild.textContent = '×';
     if (state[cat].length <= 1) head.lastChild.disabled = true;
     card.appendChild(head);
+    var linked = row.pid && DATA.byId[row.pid];
+    if (linked) card.appendChild(el('p', { class: 'card-sub', text: subText(linked) }));
 
     var fields = el('div', { class: 'fields' });
+    if (DATA.products.length) fields.appendChild(buildPicker(cat, row));
     if (cat === 'formula') {
       var seg = el('div', { class: 'seg', role: 'group', 'aria-label': '분유 종류' });
       [['can', '캔'], ['stick', '스틱'], ['liquid', '액상']].forEach(function (t) {
@@ -730,6 +1094,151 @@ if (typeof module !== 'undefined' && module.exports) module.exports = Calc;
     if (Calc.num(row.price) < 0) return '가격을 확인해 주세요.';
     if (cat === 'formula') return '가격과 용량을 넣으면 단가가 계산돼요.';
     return '가격과 매수를 넣으면 단가가 계산돼요.';
+  }
+
+  /* ---------- Ranking ---------- */
+  function unitSuffix(cat, f) {
+    if (cat === 'formula') return f.form === 'liquid' ? '/100ml' : '/100g';
+    return '/매';
+  }
+  function chipRow(label, key, options, current) {
+    var row = el('div', { class: 'chips', role: 'group', 'aria-label': label });
+    options.forEach(function (o) {
+      row.appendChild(el('button', {
+        type: 'button', class: 'chip', 'data-filter': key, 'data-value': o[0],
+        'aria-pressed': String(current === o[0]), text: o[1]
+      }));
+    });
+    return row;
+  }
+  function renderFilters(cat) {
+    var host = $('#rank-filters');
+    host.textContent = '';
+    var f = filters[cat];
+    var list = DATA.products.filter(function (p) { return p.category === cat; });
+    if (cat === 'diaper') {
+      var st = stageOptions(list);
+      if (st.length > 1) host.appendChild(chipRow('단계', 'stage', [['all', '모든 단계']].concat(st.map(function (s) { return [s, s]; })), f.stage));
+      host.appendChild(chipRow('형태', 'type', [['all', '모든 형태'], ['밴드형', '밴드형'], ['팬티형', '팬티형']], f.type));
+    } else if (cat === 'formula') {
+      host.appendChild(chipRow('종류', 'form', [['powder', '캔·스틱'], ['liquid', '액상']], f.form));
+      var st2 = stageOptions(list.filter(function (p) { return groupOf(p) === f.form; }));
+      if (st2.length > 1) host.appendChild(chipRow('단계', 'stage', [['all', '모든 단계']].concat(st2.map(function (s) { return [s, s]; })), f.stage));
+    } else {
+      host.appendChild(chipRow('평량', 'gsm', GSM_BUCKETS, f.gsm));
+    }
+  }
+
+  function rankCard(cat, it, n, f) {
+    var p = it.p, pr = it.pr;
+    var li = el('li', { class: 'rcard' + (n === 0 && !it.soldOut ? ' top' : '') + (it.soldOut ? ' sold' : '') });
+    var name = el('div', { class: 'r-name' }, [
+      el('strong', { text: productName(p) }),
+      el('span', { class: 'r-pack', text: packText(p) })
+    ]);
+    if (it.soldOut) name.appendChild(el('span', { class: 'tag tag-sold', text: '품절' }));
+    if (p.verify) name.appendChild(el('span', { class: 'tag tag-verify', text: '구성 확인 필요', title: '조사 시 팩 구성이나 가격 표기가 불확실했던 상품이에요.' }));
+    var unit = el('span', { class: 'r-unit' });
+    unit.textContent = (cat === 'formula' ? Calc.upTo1(it.res.value) : Calc.one(it.res.value)) + '원';
+    unit.appendChild(el('small', { text: unitSuffix(cat, f) }));
+    li.appendChild(el('div', { class: 'r-top' }, [
+      el('span', { class: 'r-no', 'aria-label': it.soldOut ? '품절' : (n + 1) + '위', text: it.soldOut ? '–' : String(n + 1) }),
+      name,
+      el('div', { class: 'r-price' }, [unit, el('span', { class: 'r-total', text: '총 ' + Calc.won(pr.price) + '원' })])
+    ]));
+    var meta = pr.seller || '';
+    if (pr.checked && pr.checked !== DATA.prices.updated) meta += (meta ? ' · ' : '') + pr.checked + ' 확인';
+    if (meta) li.appendChild(el('p', { class: 'r-meta', text: meta }));
+
+    var actions = el('div', { class: 'r-actions' });
+    var link = COUPANG_LINKS[p.id];
+    var cp = el('a', {
+      class: 'btn btn-sm btn-cp', href: '#', 'data-coupang-id': p.id,
+      rel: 'sponsored nofollow noopener', target: '_blank', text: '쿠팡에서 보기'
+    });
+    if (typeof link === 'string' && /^https?:\/\//.test(link)) {
+      cp.setAttribute('href', link);
+      actions.appendChild(cp);
+    } else {
+      cp.hidden = true;
+      actions.appendChild(cp);
+      if (pr.url && /^https?:\/\//.test(pr.url)) {
+        actions.appendChild(el('a', { class: 'src-link', href: pr.url, rel: 'nofollow noopener', target: '_blank', text: '가격 출처 보기' }));
+      } else {
+        actions.appendChild(el('span'));
+      }
+    }
+    actions.appendChild(el('button', { type: 'button', class: 'btn btn-sm btn-ghost', 'data-add-product': p.id, text: '계산기에 담기' }));
+    li.appendChild(actions);
+    return li;
+  }
+
+  function renderRanking() {
+    var cat = state.tab;
+    var f = filters[cat];
+    var up = DATA.prices.updated || '-';
+    $('#rank-meta').textContent = '기준일 ' + up + ' · 출처 ' + (DATA.prices.source || '-');
+    renderFilters(cat);
+    var per = cat === 'formula' ? (f.form === 'liquid' ? '100ml당' : '100g당') : '1매당';
+    $('#rank-sort').textContent = per + ' 가격이 낮은 순이에요. 품절 상품은 맨 뒤에 있어요.' + (cat === 'diaper' ? ' 단계를 바꾸면 순위가 바뀌어요.' : '');
+    var items = ranked(cat, f);
+    var list = $('#rank-list');
+    list.textContent = '';
+    var more = $('#rank-more');
+    if (!items.length) {
+      list.appendChild(el('li', { class: 'rank-empty', text: '조건에 맞는 상품이 없어요. 다른 조건을 눌러 보세요.' }));
+      more.hidden = true;
+      return;
+    }
+    var shown = expanded[cat] ? items : items.slice(0, RANK_LIMIT);
+    shown.forEach(function (it, n) { list.appendChild(rankCard(cat, it, n, f)); });
+    if (items.length > RANK_LIMIT) {
+      more.hidden = false;
+      more.textContent = expanded[cat] ? '접기' : '전체 ' + items.length + '개 보기';
+      more.setAttribute('aria-expanded', String(expanded[cat]));
+    } else more.hidden = true;
+  }
+
+  function rankStatus(msg) {
+    var s = $('#rank-status');
+    s.textContent = msg;
+    clearTimeout(rankStatus.t);
+    rankStatus.t = setTimeout(function () { s.textContent = ''; }, 3000);
+  }
+
+  function showRow(cat, id) {
+    var card = $('[data-rows="' + cat + '"] [data-id="' + id + '"]');
+    if (!card) return;
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    try { card.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'center' }); } catch (e) { card.scrollIntoView(); }
+    card.classList.remove('flash');
+    void card.offsetWidth;
+    card.classList.add('flash');
+  }
+
+  function addProductToCalc(pid) {
+    var p = DATA.byId[pid];
+    if (!p) return;
+    var cat = p.category;
+    var rows = state[cat];
+    for (var i = 0; i < rows.length; i++) {
+      if (rows[i].pid === pid) { rankStatus('이미 계산기에 있어요.'); showRow(cat, rows[i].id); return; }
+    }
+    var target = null;
+    for (var j = 0; j < rows.length; j++) {
+      if (!rows[j].pid && !String(rows[j].price || '').trim()) { target = rows[j]; break; }
+    }
+    if (!target) {
+      if (rows.length >= Calc.MAX_ROWS) { rankStatus('최대 ' + Calc.MAX_ROWS + '개까지 비교할 수 있어요. 하나를 지운 뒤 담아 주세요.'); return; }
+      target = newRow(cat);
+      rows.push(target);
+    }
+    fillRow(target, p);
+    touch(cat);
+    renderRows(cat);
+    save();
+    rankStatus('계산기에 담았어요.');
+    showRow(cat, target.id);
   }
 
   /* ---------- Summary + copy ---------- */
@@ -843,6 +1352,7 @@ if (typeof module !== 'undefined' && module.exports) module.exports = Calc;
       if (on && focus) t.focus();
     });
     $all('.panel').forEach(function (p) { p.hidden = p.getAttribute('data-panel') !== cat; });
+    renderRanking();
     renderSummary();
     save();
   }
@@ -857,7 +1367,15 @@ if (typeof module !== 'undefined' && module.exports) module.exports = Calc;
     var card = target.closest('[data-id]');
     if (!panel || !card) return null;
     var cat = panel.getAttribute('data-panel');
-    return { cat: cat, row: findRow(cat, Number(card.getAttribute('data-id'))) };
+    return { cat: cat, row: findRow(cat, Number(card.getAttribute('data-id'))), card: card };
+  }
+  function detach(c) {
+    if (!c.row.pid) return;
+    c.row.pid = '';
+    var s = $('select[data-pick]', c.card);
+    if (s) s.value = '';
+    var sub = $('.card-sub', c.card);
+    if (sub) sub.parentNode.removeChild(sub);
   }
 
   document.addEventListener('input', function (e) {
@@ -865,10 +1383,28 @@ if (typeof module !== 'undefined' && module.exports) module.exports = Calc;
     if (!t.matches || !t.matches('input[data-k]')) return;
     var c = ctx(t);
     if (!c || !c.row) return;
-    c.row[t.getAttribute('data-k')] = t.value;
-    if (t.getAttribute('data-k') === 'name') { renderSummary(); save(); return; }
+    var k = t.getAttribute('data-k');
+    c.row[k] = t.value;
+    touch(c.cat);
+    if (DETACH_KEYS[k]) detach(c);
+    if (k === 'name') { renderSummary(); save(); return; }
     recalc(c.cat);
     save();
+  });
+
+  document.addEventListener('change', function (e) {
+    var t = e.target;
+    if (!t.matches || !t.matches('select[data-pick]')) return;
+    var c = ctx(t);
+    if (!c || !c.row) return;
+    touch(c.cat);
+    var p = DATA.byId[t.value];
+    if (!p) { c.row.pid = ''; save(); return; }   // "직접 입력": keep values, unlink
+    fillRow(c.row, p);
+    renderRows(c.cat);
+    save();
+    var again = document.getElementById(c.cat + '-' + c.row.id + '-pick');
+    if (again) again.focus();
   });
 
   document.addEventListener('click', function (e) {
@@ -876,16 +1412,38 @@ if (typeof module !== 'undefined' && module.exports) module.exports = Calc;
     var tab = t.closest('.tab');
     if (tab) { setTab(tab.getAttribute('data-tab')); return; }
 
+    var chip = t.closest('[data-filter]');
+    if (chip) {
+      var f = filters[state.tab];
+      var key = chip.getAttribute('data-filter');
+      f[key] = chip.getAttribute('data-value');
+      if (key === 'form') f.stage = 'all';
+      expanded[state.tab] = false;
+      renderRanking();
+      return;
+    }
+    if (t.closest('#rank-more')) {
+      expanded[state.tab] = !expanded[state.tab];
+      renderRanking();
+      return;
+    }
+    var addP = t.closest('[data-add-product]');
+    if (addP) { addProductToCalc(addP.getAttribute('data-add-product')); return; }
+
+    var cpBtn = t.closest('a[data-coupang-id]');
+    if (cpBtn && cpBtn.getAttribute('href') === '#') { e.preventDefault(); return; }
+
     var add = t.closest('[data-add]');
     if (add) {
       var cat = add.getAttribute('data-add');
       if (state[cat].length >= Calc.MAX_ROWS) return;
+      touch(cat);
       state[cat].push(newRow(cat));
       renderRows(cat);
       save();
       var cards = $all('[data-rows="' + cat + '"] .card');
       var last = cards[cards.length - 1];
-      if (last) { var inp = $('input[data-k="price"]', last); if (inp) inp.focus(); }
+      if (last) { var inp = $('select[data-pick]', last) || $('input[data-k="price"]', last); if (inp) inp.focus(); }
       return;
     }
 
@@ -893,6 +1451,7 @@ if (typeof module !== 'undefined' && module.exports) module.exports = Calc;
     if (rm) {
       var c = ctx(rm);
       if (!c || state[c.cat].length <= 1) return;
+      touch(c.cat);
       var id = Number(rm.getAttribute('data-remove'));
       state[c.cat] = state[c.cat].filter(function (r) { return r.id !== id; });
       renderRows(c.cat);
@@ -904,6 +1463,8 @@ if (typeof module !== 'undefined' && module.exports) module.exports = Calc;
     if (seg) {
       var c2 = ctx(seg);
       if (!c2 || !c2.row) return;
+      touch(c2.cat);
+      if (c2.row.type !== seg.getAttribute('data-type')) c2.row.pid = '';
       c2.row.type = seg.getAttribute('data-type');
       renderRows(c2.cat);
       save();
@@ -911,13 +1472,10 @@ if (typeof module !== 'undefined' && module.exports) module.exports = Calc;
       if (card) card.focus();
       return;
     }
-
-    var aff = t.closest('a[data-coupang="PLACEHOLDER"]');
-    if (aff && aff.getAttribute('href') === '#') { e.preventDefault(); return; }
   });
 
   document.querySelector('.tabs').addEventListener('keydown', function (e) {
-    var keys = ['diaper', 'formula', 'wipes'];
+    var keys = CATS;
     var i = keys.indexOf(state.tab);
     if (e.key === 'ArrowRight') { e.preventDefault(); setTab(keys[(i + 1) % 3], true); }
     else if (e.key === 'ArrowLeft') { e.preventDefault(); setTab(keys[(i + 2) % 3], true); }
@@ -926,19 +1484,52 @@ if (typeof module !== 'undefined' && module.exports) module.exports = Calc;
   $('#copy-btn').addEventListener('click', copyResult);
   $('#reset-btn').addEventListener('click', function () {
     var tab = state.tab;
-    state = freshState();
+    state = freshState(false);
     state.tab = tab;
-    ['diaper', 'formula', 'wipes'].forEach(renderRows);
+    CATS.forEach(renderRows);
     setTab(tab);
     try { window.localStorage.removeItem(STORE_KEY); } catch (e) {}
   });
 
   /* ---------- Init ---------- */
-  ['diaper', 'formula', 'wipes'].forEach(function (c) {
+  CATS.forEach(function (c) {
     state[c].forEach(function (r) { r.id = ++uid; });
+    syncLinked(c);
+    if (state.autoFill[c] || allEmpty(c)) prefill(c);
     renderRows(c);
   });
   setTab(state.tab);
+
+  /* Live data (GitHub Pages): newer prices.json/products.json. Any failure -> keep embedded snapshot. */
+  function getJSON(url, opts) {
+    try {
+      return window.fetch(url, opts).then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; });
+    } catch (e) { return Promise.resolve(null); }
+  }
+  try {
+    if (window.fetch && window.Promise && location.protocol !== 'file:') {
+      Promise.all([getJSON('data/products.json', { cache: 'no-cache' }), getJSON('data/prices.json', { cache: 'no-store' })])
+        .then(function (res) {
+          var prods = validProducts(res[0]) ? res[0] : null;
+          var prices = validPrices(res[1]) ? res[1] : null;
+          if (!prods && !prices) return;
+          setData(prods, prices);
+          CATS.forEach(function (c) {
+            var before = JSON.stringify(state[c]);
+            syncLinked(c);
+            if (state.autoFill[c]) prefill(c);
+            // prefill() makes new row ids; keep them only if content changed
+            if (JSON.stringify(state[c].map(strip)) === JSON.stringify(JSON.parse(before).map(strip))) state[c] = JSON.parse(before);
+            // always re-render so the product picker lists products added to the live products.json
+            renderRowsKeepFocus(c);
+          });
+          renderRanking();
+          save();
+        })
+        .catch(function () { /* silent: snapshot stays */ });
+    }
+  } catch (e) { /* fetch blocked: snapshot stays */ }
+  function strip(r) { var o = {}; Object.keys(r).forEach(function (k) { if (k !== 'id') o[k] = r[k]; }); return o; }
 })();
 </script>
 </body>
