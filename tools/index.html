@@ -1,0 +1,405 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ZeroUpload — Free PDF &amp; Image Tools That Never Upload Your Files</title>
+<meta name="description" content="Merge and split PDFs, turn images into a PDF, compress and convert JPG/PNG/WEBP, and mosaic sensitive details — all 100% in your browser. Free, no sign-up, zero server upload.">
+<meta name="robots" content="index,follow">
+<meta name="theme-color" content="#4f46e5">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ZeroUpload">
+<meta property="og:title" content="ZeroUpload — Free PDF &amp; Image Tools That Never Upload Your Files">
+<meta property="og:description" content="Merge PDFs, images to PDF, compress &amp; convert, privacy mosaic. Everything runs locally in your browser — no upload, no account, no cost.">
+<meta property="og:image" content="https://p9chy5j655-collab.github.io/tools/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="ZeroUpload — PDF &amp; Image Tools, 100% In-Browser">
+<meta name="twitter:description" content="Merge, split, convert, compress and redact files without uploading them anywhere.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%234f46e5'/%3E%3Cpath d='M16 8l7 3v6c0 4-3 6.5-7 7.5-4-1-7-3.5-7-7.5v-6l7-3z' fill='none' stroke='%23fff' stroke-width='2' stroke-linejoin='round'/%3E%3Cpath d='M12.8 16.2l2.2 2.2 4.2-4.4' fill='none' stroke='%23fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preload" href="fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preconnect" href="https://unpkg.com" crossorigin>
+<link rel="stylesheet" href="styles.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "ZeroUpload",
+  "applicationCategory": "UtilitiesApplication",
+  "applicationSubCategory": "PDF & Image Converter",
+  "operatingSystem": "Any modern web browser",
+  "browserRequirements": "Requires JavaScript",
+  "description": "A free browser-based toolkit to merge and split PDFs, convert images to PDF, compress and convert images, and mosaic sensitive areas of a photo. All processing happens locally on the device; files are never uploaded to a server.",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "featureList": [
+    "Merge and split PDF files",
+    "Convert JPG, PNG and WEBP images to a single PDF",
+    "Compress and convert images (WEBP, JPEG, PNG)",
+    "Mosaic sensitive details on a photo",
+    "Works offline after loading, no account required"
+  ],
+  "inLanguage": ["en", "ko"]
+}
+</script>
+</head>
+<body>
+<a class="skip" href="#tools" data-i18n="a11y.skip">Skip to tools</a>
+
+<div class="topbar">
+  <div class="container topbar-inner">
+    <span class="pulse" aria-hidden="true"></span>
+    <span data-i18n="topbar.text">100% in-browser · your files never leave this device</span>
+  </div>
+</div>
+
+<header class="site-header" id="top">
+  <div class="container header-inner">
+    <a class="brand" href="#top" aria-label="ZeroUpload home">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 32 32" width="30" height="30" fill="none">
+          <rect width="32" height="32" rx="9" fill="url(#bg)"/>
+          <path d="M16 8.2l7 3v5.9c0 3.9-2.9 6.4-7 7.4-4.1-1-7-3.5-7-7.4v-5.9l7-3z" stroke="#fff" stroke-width="1.9" stroke-linejoin="round"/>
+          <path d="M12.9 16.3l2.2 2.2 4.1-4.4" stroke="#fff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
+          <defs><linearGradient id="bg" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#6366f1"/><stop offset="1" stop-color="#7c3aed"/>
+          </linearGradient></defs>
+        </svg>
+      </span>
+      <span class="brand-text">
+        <span class="brand-name">ZeroUpload</span>
+        <span class="brand-tag" data-i18n="brand.tag">private file tools</span>
+      </span>
+    </a>
+
+    <nav class="header-nav" aria-label="Sections">
+      <a href="#tools" data-i18n="nav.tools">Tools</a>
+      <a href="#privacy" data-i18n="nav.privacy">Privacy</a>
+      <a href="#faq" data-i18n="nav.faq">FAQ</a>
+    </nav>
+
+    <div class="lang-switch" role="group" aria-label="Language / 언어">
+      <button type="button" class="lang-btn" data-lang="en" aria-pressed="true">EN</button>
+      <button type="button" class="lang-btn" data-lang="ko" aria-pressed="false">KO</button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="hero container">
+    <span class="badge" data-i18n="hero.badge">100% In-Browser · Zero Server Upload</span>
+    <h1 data-i18n="hero.h1">PDF &amp; image tools that never upload your files</h1>
+    <p class="hero-sub" data-i18n="hero.sub">Merge and split PDFs, turn photos into a PDF, compress and convert images, and hide sensitive details — all processed locally by your browser. Free, no sign-up, nothing sent to a server.</p>
+    <div class="hero-points">
+      <span data-i18n="hero.p1">No upload</span>
+      <span data-i18n="hero.p2">No account</span>
+      <span data-i18n="hero.p3">No watermark</span>
+      <span data-i18n="hero.p4">Works on phone</span>
+    </div>
+  </section>
+
+  <!-- AdSense slot (in-article top): reserved whitespace only, no placeholder box -->
+  <div class="ad-slot" data-ad-slot="top" aria-hidden="true"></div>
+
+  <section class="tools container" id="tools">
+    <div class="tabs" role="tablist" aria-label="Tools">
+      <button class="tab" role="tab" id="tab-merge" aria-controls="panel-merge" aria-selected="true" data-panel="merge">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" aria-hidden="true"><path d="M7 4h7l4 4v12a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M14 4v4h4M9 13h6M9 16.5h4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+        <span data-i18n="tab.merge">Merge &amp; Split PDF</span>
+      </button>
+      <button class="tab" role="tab" id="tab-img2pdf" aria-controls="panel-img2pdf" aria-selected="false" tabindex="-1" data-panel="img2pdf">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" aria-hidden="true"><rect x="3.5" y="5" width="17" height="14" rx="2.2" stroke="currentColor" stroke-width="1.7"/><circle cx="9" cy="10" r="1.6" stroke="currentColor" stroke-width="1.7"/><path d="M4.5 17l4.6-4.4 3.2 3 2.6-2.4 4.6 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span data-i18n="tab.img2pdf">Images to PDF</span>
+      </button>
+      <button class="tab" role="tab" id="tab-compress" aria-controls="panel-compress" aria-selected="false" tabindex="-1" data-panel="compress">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" aria-hidden="true"><path d="M12 3.8v5.4M12 14.8v5.4M3.8 12h5.4M14.8 12h5.4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M8.6 8.6L10.8 6.4 12 5.2l1.2 1.2 2.2 2.2M8.6 15.4l2.2 2.2 1.2 1.2 1.2-1.2 2.2-2.2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span data-i18n="tab.compress">Compress &amp; Convert</span>
+      </button>
+      <button class="tab" role="tab" id="tab-blur" aria-controls="panel-blur" aria-selected="false" tabindex="-1" data-panel="blur">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" aria-hidden="true"><path d="M4 8V5.5A1.5 1.5 0 0 1 5.5 4H8M16 4h2.5A1.5 1.5 0 0 1 20 5.5V8M20 16v2.5a1.5 1.5 0 0 1-1.5 1.5H16M8 20H5.5A1.5 1.5 0 0 1 4 18.5V16" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><rect x="8.4" y="8.4" width="7.2" height="7.2" rx="1" stroke="currentColor" stroke-width="1.7"/></svg>
+        <span data-i18n="tab.blur">Privacy Blur</span>
+      </button>
+    </div>
+
+    <!-- ── Panel 1: Merge & Split ── -->
+    <section class="panel" id="panel-merge" role="tabpanel" aria-labelledby="tab-merge">
+      <div class="panel-head">
+        <h2 data-i18n="merge.h">Merge &amp; Split PDF</h2>
+        <p data-i18n="merge.sub">Combine several PDFs in the order you choose, or pull out only the pages you need.</p>
+      </div>
+
+      <div class="segmented" role="group" aria-label="Merge or split">
+        <button type="button" class="seg-btn is-active" data-mode="merge" data-i18n="merge.modeMerge">Merge PDFs</button>
+        <button type="button" class="seg-btn" data-mode="split" data-i18n="merge.modeSplit">Extract pages</button>
+      </div>
+
+      <div class="mode" id="mode-merge">
+        <label class="dropzone" id="drop-merge">
+          <input type="file" id="file-merge" accept="application/pdf,.pdf" multiple>
+          <span class="dz-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="26" height="26" fill="none"><path d="M12 16V5m0 0L7.8 9.2M12 5l4.2 4.2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 15v3.2A1.8 1.8 0 0 0 5.8 20h12.4A1.8 1.8 0 0 0 20 18.2V15" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+          </span>
+          <span class="dz-title" data-i18n="dz.title">Click to choose files or drop them here</span>
+          <span class="dz-hint" data-i18n="dz.hintPdf">PDF files · read locally, never uploaded</span>
+        </label>
+
+        <ul class="file-list" id="merge-list"></ul>
+
+        <div class="actions">
+          <button type="button" class="btn btn-primary" id="btn-merge" disabled>
+            <span data-i18n="merge.action">Merge PDFs</span>
+          </button>
+          <button type="button" class="btn btn-ghost" id="btn-merge-clear" data-i18n="common.clear">Clear all</button>
+        </div>
+        <p class="status" id="merge-status" role="status" aria-live="polite" hidden></p>
+      </div>
+
+      <div class="mode" id="mode-split" hidden>
+        <label class="dropzone" id="drop-split">
+          <input type="file" id="file-split" accept="application/pdf,.pdf">
+          <span class="dz-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="26" height="26" fill="none"><path d="M12 4v16" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-dasharray="2.6 3"/><rect x="3.8" y="4.5" width="5" height="15" rx="1.4" stroke="currentColor" stroke-width="1.7"/><rect x="15.2" y="4.5" width="5" height="15" rx="1.4" stroke="currentColor" stroke-width="1.7"/></svg>
+          </span>
+          <span class="dz-title" data-i18n="dz.titleOne">Click to choose a file or drop it here</span>
+          <span class="dz-hint" data-i18n="dz.hintPdf">PDF files · read locally, never uploaded</span>
+        </label>
+
+        <div class="file-list" id="split-file"></div>
+
+        <div class="field-row" id="split-fields" hidden>
+          <label class="field grow">
+            <span class="field-label" data-i18n="merge.rangeLabel">Page range</span>
+            <input type="text" id="split-range" inputmode="numeric" placeholder="1-2, 4" autocomplete="off">
+            <span class="field-help" id="split-help" data-i18n="merge.rangeHelp">Use commas for single pages and dashes for ranges. Example: 1-3, 5</span>
+          </label>
+        </div>
+
+        <div class="actions">
+          <button type="button" class="btn btn-primary" id="btn-split" disabled>
+            <span data-i18n="merge.splitAction">Extract &amp; download</span>
+          </button>
+        </div>
+        <p class="status" id="split-status" role="status" aria-live="polite" hidden></p>
+      </div>
+    </section>
+
+    <!-- ── Panel 2: Images to PDF ── -->
+    <section class="panel" id="panel-img2pdf" role="tabpanel" aria-labelledby="tab-img2pdf" hidden>
+      <div class="panel-head">
+        <h2 data-i18n="i2p.h">Images to PDF</h2>
+        <p data-i18n="i2p.sub">Drop your photos or scans, arrange the order, and get one clean PDF. Nothing is compressed away beyond what fits the page.</p>
+      </div>
+
+      <label class="dropzone" id="drop-i2p">
+        <input type="file" id="file-i2p" accept="image/jpeg,image/png,image/webp,image/gif" multiple>
+        <span class="dz-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="26" height="26" fill="none"><rect x="3.5" y="5" width="17" height="14" rx="2.2" stroke="currentColor" stroke-width="1.7"/><circle cx="9" cy="10" r="1.6" stroke="currentColor" stroke-width="1.7"/><path d="M4.5 17l4.6-4.4 3.2 3 2.6-2.4 4.6 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+        <span class="dz-title" data-i18n="dz.titleMulti">Click to choose images or drop them here</span>
+        <span class="dz-hint" data-i18n="dz.hintImg">JPG · PNG · WEBP · decoded on your device</span>
+      </label>
+
+      <ul class="file-list" id="i2p-list"></ul>
+
+      <div class="field-row" id="i2p-fields" hidden>
+        <label class="field">
+          <span class="field-label" data-i18n="i2p.pageSize">Page size</span>
+          <select id="i2p-page">
+            <option value="fit" data-i18n="i2p.fit">Fit to image</option>
+            <option value="a4" data-i18n="i2p.a4">A4 portrait</option>
+            <option value="a4l" data-i18n="i2p.a4l">A4 landscape</option>
+          </select>
+        </label>
+        <label class="field">
+          <span class="field-label" data-i18n="i2p.margin">Margin</span>
+          <select id="i2p-margin">
+            <option value="0" data-i18n="i2p.m0">None</option>
+            <option value="24" data-i18n="i2p.m1">Small</option>
+            <option value="48" data-i18n="i2p.m2">Large</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="actions">
+        <button type="button" class="btn btn-primary" id="btn-i2p" disabled>
+          <span data-i18n="i2p.action">Create PDF</span>
+        </button>
+        <button type="button" class="btn btn-ghost" id="btn-i2p-clear" data-i18n="common.clear">Clear all</button>
+      </div>
+      <p class="status" id="i2p-status" role="status" aria-live="polite" hidden></p>
+    </section>
+
+    <!-- ── Panel 3: Compress & Convert ── -->
+    <section class="panel" id="panel-compress" role="tabpanel" aria-labelledby="tab-compress" hidden>
+      <div class="panel-head">
+        <h2 data-i18n="cmp.h">Compress &amp; Convert</h2>
+        <p data-i18n="cmp.sub">Shrink a photo or switch it to another format. Compare the exact before-and-after size before you download.</p>
+      </div>
+
+      <label class="dropzone" id="drop-cmp">
+        <input type="file" id="file-cmp" accept="image/jpeg,image/png,image/webp,image/gif,image/bmp">
+        <span class="dz-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="26" height="26" fill="none"><path d="M12 5v9M12 14l-3.2-3.2M12 14l3.2-3.2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 15.5V18a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+        </span>
+        <span class="dz-title" data-i18n="dz.titleOne">Click to choose a file or drop it here</span>
+        <span class="dz-hint" data-i18n="dz.hintImgOne">JPG · PNG · WEBP · BMP — one image at a time</span>
+      </label>
+
+      <div class="work" id="cmp-work" hidden>
+        <div class="preview-card">
+          <img id="cmp-preview" alt="">
+          <div class="preview-meta" id="cmp-meta"></div>
+        </div>
+
+        <div class="controls">
+          <div class="field">
+            <span class="field-label" data-i18n="cmp.format">Output format</span>
+            <div class="segmented small" role="group" aria-label="Output format">
+              <button type="button" class="seg-btn is-active" data-fmt="webp">WEBP</button>
+              <button type="button" class="seg-btn" data-fmt="jpeg">JPEG</button>
+              <button type="button" class="seg-btn" data-fmt="png">PNG</button>
+            </div>
+          </div>
+
+          <label class="field">
+            <span class="field-label" data-i18n="cmp.quality">Quality</span>
+            <div class="slider-row">
+              <input type="range" id="cmp-quality" min="10" max="100" step="1" value="80">
+              <output id="cmp-quality-out" for="cmp-quality">80%</output>
+            </div>
+            <span class="field-help" id="cmp-quality-help" data-i18n="cmp.qualityHelp">Lower quality means a smaller file. 70–85% is usually invisible.</span>
+          </label>
+
+          <div class="stats" id="cmp-stats"></div>
+
+          <button type="button" class="btn btn-primary" id="btn-cmp" disabled>
+            <span data-i18n="cmp.action">Download converted image</span>
+          </button>
+        </div>
+      </div>
+      <p class="status" id="cmp-status" role="status" aria-live="polite" hidden></p>
+    </section>
+
+    <!-- ── Panel 4: Privacy Blur ── -->
+    <section class="panel" id="panel-blur" role="tabpanel" aria-labelledby="tab-blur" hidden>
+      <div class="panel-head">
+        <h2 data-i18n="blur.h">Privacy Blur</h2>
+        <p data-i18n="blur.sub">Hide a face, a name, an account number or an address before you share a screenshot. Drag on the photo — the mosaic is applied instantly.</p>
+      </div>
+
+      <label class="dropzone" id="drop-blur">
+        <input type="file" id="file-blur" accept="image/jpeg,image/png,image/webp,image/gif,image/bmp">
+        <span class="dz-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="26" height="26" fill="none"><path d="M4 8V5.5A1.5 1.5 0 0 1 5.5 4H8M16 4h2.5A1.5 1.5 0 0 1 20 5.5V8M20 16v2.5a1.5 1.5 0 0 1-1.5 1.5H16M8 20H5.5A1.5 1.5 0 0 1 4 18.5V16" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><rect x="8.4" y="8.4" width="7.2" height="7.2" rx="1" stroke="currentColor" stroke-width="1.7"/></svg>
+        </span>
+        <span class="dz-title" data-i18n="dz.titleOne">Click to choose a file or drop it here</span>
+        <span class="dz-hint" data-i18n="dz.hintImgOne">JPG · PNG · WEBP · BMP — one image at a time</span>
+      </label>
+
+      <div class="work blur-work" id="blur-work" hidden>
+        <div class="blur-stage">
+          <div class="canvas-wrap" id="blur-wrap">
+            <canvas id="blur-canvas"></canvas>
+            <canvas id="blur-overlay" aria-label="Drag to select an area to mosaic" role="img"></canvas>
+          </div>
+          <p class="canvas-hint" data-i18n="blur.tip">Tip: drag a box exactly over the detail you want hidden. Each box is burned into the image.</p>
+        </div>
+
+        <div class="controls">
+          <label class="field">
+            <span class="field-label" data-i18n="blur.strength">Mosaic size</span>
+            <select id="blur-strength">
+              <option value="6" data-i18n="blur.s1">Fine</option>
+              <option value="14" selected data-i18n="blur.s2">Medium</option>
+              <option value="28" data-i18n="blur.s3">Strong</option>
+            </select>
+          </label>
+
+          <div class="btn-col">
+            <button type="button" class="btn btn-ghost" id="btn-blur-undo" disabled>
+              <span data-i18n="blur.undo">Undo</span>
+            </button>
+            <button type="button" class="btn btn-ghost" id="btn-blur-reset" disabled>
+              <span data-i18n="blur.reset">Reset</span>
+            </button>
+          </div>
+
+          <button type="button" class="btn btn-primary" id="btn-blur-dl" disabled>
+            <span data-i18n="blur.download">Download PNG</span>
+          </button>
+        </div>
+      </div>
+      <p class="status" id="blur-status" role="status" aria-live="polite" hidden></p>
+    </section>
+  </section>
+
+  <!-- AdSense slot (after tools): reserved whitespace only -->
+  <div class="ad-slot" data-ad-slot="after-tools" aria-hidden="true"></div>
+
+  <section class="container privacy" id="privacy">
+    <div class="section-head">
+      <h2 data-i18n="priv.h">Why "zero upload" matters</h2>
+      <p data-i18n="priv.sub">Most free converters send your file to a server, convert it, and keep a copy. This one never has your file to keep.</p>
+    </div>
+    <div class="cards">
+      <article class="card">
+        <span class="card-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none"><rect x="4" y="4" width="16" height="12" rx="2" stroke="currentColor" stroke-width="1.7"/><path d="M2.5 19.5h19" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+        </span>
+        <h3 data-i18n="priv.c1.h">Runs on your device</h3>
+        <p data-i18n="priv.c1.p">Every conversion uses your browser's own memory, canvas and JavaScript. There is no upload step, so there is no copy on a server to leak.</p>
+      </article>
+      <article class="card">
+        <span class="card-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none"><path d="M12 3.6l7 3v5.6c0 4-2.9 6.6-7 7.8-4.1-1.2-7-3.8-7-7.8V6.6l7-3z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M9 12l2.2 2.2 4-4.2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+        <h3 data-i18n="priv.c2.h">No account, no log</h3>
+        <p data-i18n="priv.c2.p">No sign-up, no email, no file history. Close the tab and nothing is left behind — not even the file name.</p>
+      </article>
+      <article class="card">
+        <span class="card-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none"><circle cx="12" cy="12" r="8.4" stroke="currentColor" stroke-width="1.7"/><path d="M12 7.5V12l3 1.8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+        <h3 data-i18n="priv.c3.h">Free and instant</h3>
+        <p data-i18n="priv.c3.p">No watermark, no daily limit, no premium tier for the basics. Large files convert as fast as your device can draw them.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="container faq" id="faq">
+    <div class="section-head">
+      <h2 data-i18n="faq.h">Frequently asked</h2>
+    </div>
+    <details>
+      <summary data-i18n="faq.q1">Are my files uploaded anywhere?</summary>
+      <p data-i18n="faq.a1">No. The page loads once and every tool then runs in your browser. Your PDFs and photos are opened in memory, processed there, and saved straight back to your device.</p>
+    </details>
+    <details>
+      <summary data-i18n="faq.q2">Is it really free? What is the catch?</summary>
+      <p data-i18n="faq.a2">It is free and there is no sign-up. Because there is no server doing the work, there is no cost to pass on to you. Future ads on the page keep it that way.</p>
+    </details>
+    <details>
+      <summary data-i18n="faq.q3">Which formats can I use?</summary>
+      <p data-i18n="faq.a3">PDF for merging and splitting; JPG, PNG, WEBP, GIF and BMP for the image tools. PDFs protected by a password are not supported.</p>
+    </details>
+    <details>
+      <summary data-i18n="faq.q4">Does the mosaic really remove the information?</summary>
+      <p data-i18n="faq.a4">The blurred area is redrawn as coarse blocks and the result is exported as a new PNG, so the original pixels under that area do not survive in the file you download.</p>
+    </details>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <span class="brand-name">ZeroUpload</span>
+      <p data-i18n="foot.note">Private file tools that run entirely in your browser.</p>
+    </div>
+    <p class="footer-legal" data-i18n="foot.legal">© 2026 ZeroUpload · No uploads, no accounts, no tracking of your documents.</p>
+  </div>
+</footer>
+
+<noscript><p class="container noscript">This tool needs JavaScript enabled — that is what lets it work without a server.</p></noscript>
+
+<script defer src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+<script defer src="app.js"></script>
+</body>
+</html>
