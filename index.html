@@ -279,7 +279,14 @@ section.block h2{font-size:20px;letter-spacing:-.02em;margin:0 0 12px;font-weigh
 
 /* Ranking */
 .rank{margin:0 0 32px}
-.rank h2{font-size:20px;letter-spacing:-.02em;margin:0 0 2px;font-weight:800}
+.rank-details{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:0 14px}
+.rank-details>summary{list-style:none;cursor:pointer;min-height:56px;display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 8px;font-weight:800;font-size:17px;letter-spacing:-.02em;padding:16px 30px 16px 0;position:relative}
+.rank-details>summary::-webkit-details-marker{display:none}
+.rank-details>summary .sum-note{font-size:13px;font-weight:600;color:var(--ink-3);letter-spacing:0}
+.rank-details>summary::after{content:"";position:absolute;right:6px;top:50%;width:9px;height:9px;margin-top:-6px;border-right:2px solid var(--ink-3);border-bottom:2px solid var(--ink-3);transform:rotate(45deg);transition:transform .2s}
+.rank-details[open]>summary::after{transform:rotate(-135deg);margin-top:-2px}
+.rank-body{padding:0 0 16px}
+.rank h2{font-size:17px;letter-spacing:-.02em;margin:0 0 2px;font-weight:800}
 .rank-meta{margin:0 0 10px;font-size:13px;color:var(--ink-3);font-variant-numeric:tabular-nums}
 .rank .disclosure{margin:0 0 8px}
 .auto-note{margin:0 0 12px;padding:8px 12px;font-size:13px;color:var(--ink-2);background:var(--surface-2);border:1px solid var(--line);border-radius:10px}
@@ -312,7 +319,7 @@ section.block h2{font-size:20px;letter-spacing:-.02em;margin:0 0 12px;font-weigh
 .tag{display:inline-block;font-size:11px;font-weight:800;line-height:1.5;padding:0 7px;border-radius:999px;margin:3px 4px 0 0}
 .tag-sold{background:var(--ink-3);color:var(--surface)}
 .tag-verify{background:var(--warn-soft);color:var(--warn)}
-.r-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+.r-actions{display:grid;grid-template-columns:1fr;gap:6px;margin-top:10px}
 .btn-sm{min-height:44px;font-size:15px;padding:0 10px;width:100%}
 .btn-cp{background:var(--accent);color:var(--accent-ink)}
 .btn-ghost{background:var(--surface-2);color:var(--ink);border:1px solid var(--line-strong)}
@@ -348,7 +355,7 @@ section.block h2{font-size:20px;letter-spacing:-.02em;margin:0 0 12px;font-weigh
     </nav>
     <p class="eyebrow">기저귀 · 분유 · 물티슈</p>
     <h1>육아용품 개당 단가 계산기</h1>
-    <p class="intro">기저귀, 분유, 물티슈 중 어떤 게 정말 싼지 헷갈리셨죠? 상품만 고르면 1매·100g·100ml 기준 단가로 바로 비교해 드려요.</p>
+    <p class="intro">기저귀, 분유, 물티슈 중 어떤 게 정말 싼지 헷갈리셨죠? 아래에서 상품을 고르고 가격만 확인하면 1매·100g·100ml 기준 단가로 바로 비교해 드려요. 회원가입 없이 무료로 쓰는 계산기예요.</p>
   </header>
 
   <div class="tabs" role="tablist" aria-label="품목 선택">
@@ -356,19 +363,6 @@ section.block h2{font-size:20px;letter-spacing:-.02em;margin:0 0 12px;font-weigh
     <button class="tab" role="tab" id="tab-formula" aria-controls="ranking panel-formula" aria-selected="false" data-tab="formula" tabindex="-1">분유</button>
     <button class="tab" role="tab" id="tab-wipes" aria-controls="ranking panel-wipes" aria-selected="false" data-tab="wipes" tabindex="-1">물티슈</button>
   </div>
-
-  <section class="rank" id="ranking" aria-labelledby="rank-title">
-    <h2 id="rank-title">개당 가격 순위</h2>
-    <p class="rank-meta" id="rank-meta">기준일 - · 출처 -</p>
-    <!-- 아래 순위 카드에 쿠팡 버튼이 있어서, 대가성 문구를 버튼보다 위에 둡니다. 지우지 마세요. -->
-    <p class="disclosure">이 페이지는 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.</p>
-    <p class="auto-note">가격은 하루 한 번 자동 업데이트돼요 · 실제 결제가는 판매처에서 확인하세요</p>
-    <div class="filters" id="rank-filters"></div>
-    <p class="rank-sort" id="rank-sort"></p>
-    <ol class="rank-list" id="rank-list"></ol>
-    <button type="button" class="rank-more" id="rank-more" hidden></button>
-    <span class="rank-status" id="rank-status" role="status"></span>
-  </section>
 
   <h2 class="calc-title" id="calc-title">직접 비교해 보기</h2>
 
@@ -416,13 +410,30 @@ section.block h2{font-size:20px;letter-spacing:-.02em;margin:0 0 12px;font-weigh
     <span class="copy-status" id="copy-status" role="status"></span>
   </div>
 
+  <section class="rank" id="ranking" aria-label="개당 가격 순위">
+    <details class="rank-details" id="rank-details">
+      <summary>최저가 순위 참고하기 <span class="sum-note">(기저귀·분유·물티슈 단가 순위)</span></summary>
+      <div class="rank-body">
+        <h2 id="rank-title">개당 가격 순위</h2>
+        <p class="rank-meta" id="rank-meta">기준일 - · 출처 -</p>
+        <p class="auto-note">가격은 하루 한 번 자동 업데이트돼요 · 실제 결제가는 판매처에서 확인하세요</p>
+        <div class="filters" id="rank-filters"></div>
+        <p class="rank-sort" id="rank-sort"></p>
+        <ol class="rank-list" id="rank-list"></ol>
+        <button type="button" class="rank-more" id="rank-more" hidden></button>
+        <span class="rank-status" id="rank-status" role="status"></span>
+      </div>
+    </details>
+  </section>
+
   <section class="block" aria-labelledby="aff-title">
     <h2 id="aff-title">추천 상품 보러가기</h2>
     <p class="disclosure">이 페이지는 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.</p>
+    <p class="disclosure">직접 가격을 넣어 비교하는 게 번거로우시면, 품목별로 가장 많이 찾는 상품을 모아 두었어요.</p>
     <div class="aff">
-      <a class="btn btn-aff" href="https://link.coupang.com/a/iQUGxQifAG" rel="sponsored noopener" target="_blank"><span>기저귀 추천 상품</span><span class="arrow" aria-hidden="true">→</span></a>
-      <a class="btn btn-aff" href="https://link.coupang.com/a/iQUHz7gsHA" rel="sponsored noopener" target="_blank"><span>분유 추천 상품</span><span class="arrow" aria-hidden="true">→</span></a>
-      <a class="btn btn-aff" href="https://link.coupang.com/a/iQUIxNzmkC" rel="sponsored noopener" target="_blank"><span>물티슈 추천 상품</span><span class="arrow" aria-hidden="true">→</span></a>
+      <a class="btn btn-aff" href="https://link.coupang.com/a/iQUGxQifAG" rel="sponsored nofollow noopener" target="_blank"><span>기저귀 추천 상품</span><span class="arrow" aria-hidden="true">→</span></a>
+      <a class="btn btn-aff" href="https://link.coupang.com/a/iQUHz7gsHA" rel="sponsored nofollow noopener" target="_blank"><span>분유 추천 상품</span><span class="arrow" aria-hidden="true">→</span></a>
+      <a class="btn btn-aff" href="https://link.coupang.com/a/iQUIxNzmkC" rel="sponsored nofollow noopener" target="_blank"><span>물티슈 추천 상품</span><span class="arrow" aria-hidden="true">→</span></a>
     </div>
   </section>
 
@@ -605,57 +616,13 @@ if (typeof module !== 'undefined' && module.exports) module.exports = Calc;
   'use strict';
 
   // COUPANG-LINKS-START
+  /* 품목별 추천 링크 3개만 남깁니다.
+     2026-11-23 Daum 검색등록이 "홍보/스팸성 콘텐츠(과도한 홍보·클릭 유도)"로 보류되어,
+     상품 50개짜리 쿠팡 딥링크를 페이지에서 걷어내고 추천 링크 3개로 모았습니다. */
   var COUPANG_LINKS = {
-    "huggies-naturemade-pants-4-80": "https://link.coupang.com/a/iQYGAAaxEa",
-    "huggies-naturemade-pants-5-66": "https://link.coupang.com/a/iQXPMzGbM4",
-    "huggies-naturemade-bamboo-band-3-48x3": "https://link.coupang.com/a/iQXRhkOWce",
-    "huggies-naturemade-bamboo-band-4-40x3": "https://link.coupang.com/a/iQXShLgqXI",
-    "huggies-naturemade-bamboo-band-5-34x3": "https://link.coupang.com/a/iQXTPFHcRg",
-    "huggies-naturemade-bamboo-pants-4-54x2": "https://link.coupang.com/a/iQXUOfxs2m",
-    "huggies-naturemade-bamboo-pants-5-44x2": "https://link.coupang.com/a/iQXVTlmAg0",
-    "mamypoko-supercomfort-pants-4-44x3": "https://link.coupang.com/a/iQXXbxKoGy",
-    "mamypoko-supercomfort-pants-5-36x3": "https://link.coupang.com/a/iQXYj55J00",
-    "huggies-maxdry-air-band-5-44x2": "https://link.coupang.com/a/iQXZmdQp2q",
-    "huggies-magiccomfort-pants-5-38": "https://link.coupang.com/a/iQX0vYW8NE",
-    "pampers-babydry-pants-5-144": "https://link.coupang.com/a/iQX1IkiQ7U",
-    "mamypoko-kkuljam-pants-4-24x6": "https://link.coupang.com/a/iQX2KjZThI",
-    "naturalblossom-vegan-band-3-26x4": "https://link.coupang.com/a/iQX3UATGCa",
-    "bosomi-actionfit-pants-l-30x4": "https://link.coupang.com/a/iQX4KdbJYW",
-    "huggies-maxdry-air-band-4-52": "https://link.coupang.com/a/iQX5Rnu8ce",
-    "huggies-magiccomfort-band-4-58": "https://link.coupang.com/a/iQX6RCMTm0",
-    "huggies-naturemade-pants-4-42": "https://link.coupang.com/a/iQX7ZQlFwi",
-    "kindo-bebeguard-pants-4-36": "https://link.coupang.com/a/iQX8WjCrRI",
-    "kindo-oslim-air-pants-4-36x4": "https://link.coupang.com/a/iQX90QFg1Q",
-    "maeil-absolute-myeongjak-1-800": "https://link.coupang.com/a/iQYbmuEFsy",
-    "maeil-absolute-sensitive-1-900": "https://link.coupang.com/a/iQYcjcdpfM",
-    "namyang-imperialxo-stick-1-14x20": "https://link.coupang.com/a/iQYdd3gVpc",
-    "namyang-imperialxo-stick-2-14x20": "https://link.coupang.com/a/iQYehn6VYi",
-    "namyang-imperialxo-stick-3-14x20": "https://link.coupang.com/a/iQYfoZObBc",
-    "namyang-imperialdreamxo-can-1-800": "https://link.coupang.com/a/iQYgeyG3pc",
-    "namyang-imom-can-1-800": "https://link.coupang.com/a/iQYhiLntam",
-    "namyang-imom-stick-1-14x20": "https://link.coupang.com/a/iQYihVli6C",
-    "namyang-imom-liquid-2-240x6": "https://link.coupang.com/a/iQYi8s7yW4",
-    "namyang-imom-goat-stick-1-14x12": "https://link.coupang.com/a/iQYka1s9Gm",
-    "ildong-truemom-newclass-can-1-800": "https://link.coupang.com/a/iQYlnDqPK0",
-    "ildong-truemom-newclassqueen-liquid-180x6": "https://link.coupang.com/a/iQYmGuPfPg",
-    "ildong-goat-signature-can-1-800x6": "https://link.coupang.com/a/iQYnQZlNoO",
-    "aptamil-profutura-pre-800x2": "https://link.coupang.com/a/iQYoPTysYS",
-    "hipp-combiotic-1-600x6": "https://link.coupang.com/a/iQYpHw3YGW",
-    "illuma-1-800": "https://link.coupang.com/a/iQYqBILrm8",
-    "bebesoop-premier-70x10": "https://link.coupang.com/a/iQYrw6Bcpo",
-    "bebesoop-signature-blue-70x20": "https://link.coupang.com/a/iQYsy3y7um",
-    "bebesoop-signature-with-blue-70x10": "https://link.coupang.com/a/iQYtTBipMa",
-    "bebesoop-signature-with-red-70x10": "https://link.coupang.com/a/iQYuMsJb8S",
-    "huggies-naturemade-biodeg-wipes-70x10": "https://link.coupang.com/a/iQYv5mNJSK",
-    "huggies-premium-wipes-72x10": "https://link.coupang.com/a/iQYwY5re4y",
-    "jalpul-naeez-simple-70x20": "https://link.coupang.com/a/iQYx0CA91g",
-    "superdaddy-excellent82-70x20": "https://link.coupang.com/a/iQYy6eIS7x",
-    "bosomi-13mu-cap-60x9": "https://link.coupang.com/a/iQYz3X8vT2",
-    "kurlys-signature-wipes-70x10": "https://link.coupang.com/a/iQYATZWYg0",
-    "brown-premium-70x10": "https://link.coupang.com/a/iQYBM2ie5c",
-    "brown-original-plus-80x10": "https://link.coupang.com/a/iQYCRi3US4",
-    "sum-signature-premium-63-70x10": "https://link.coupang.com/a/iQYD6vHb0C",
-    "soondoongi-premium-emboss-70x10": "https://link.coupang.com/a/iQYFvF4ZGK"
+    diaper: 'https://link.coupang.com/a/iQUGxQifAG',
+    formula: 'https://link.coupang.com/a/iQUHz7gsHA',
+    wipes: 'https://link.coupang.com/a/iQUIxNzmkC'
   };
   // COUPANG-LINKS-END
 
@@ -1179,24 +1146,10 @@ if (typeof module !== 'undefined' && module.exports) module.exports = Calc;
     if (meta) li.appendChild(el('p', { class: 'r-meta', text: meta }));
 
     var actions = el('div', { class: 'r-actions' });
-    var link = COUPANG_LINKS[p.id];
-    var cp = el('a', {
-      class: 'btn btn-sm btn-cp', href: '#', 'data-coupang-id': p.id,
-      rel: 'sponsored nofollow noopener', target: '_blank', text: '쿠팡에서 보기'
-    });
-    if (typeof link === 'string' && /^https?:\/\//.test(link)) {
-      cp.setAttribute('href', link);
-      actions.appendChild(cp);
-    } else {
-      cp.hidden = true;
-      actions.appendChild(cp);
-      if (pr.url && /^https?:\/\//.test(pr.url)) {
-        actions.appendChild(el('a', { class: 'src-link', href: pr.url, rel: 'nofollow noopener', target: '_blank', text: '가격 출처 보기' }));
-      } else {
-        actions.appendChild(el('span'));
-      }
-    }
     actions.appendChild(el('button', { type: 'button', class: 'btn btn-sm btn-ghost', 'data-add-product': p.id, text: '계산기에 담기' }));
+    if (pr.url && /^https?:\/\//.test(pr.url)) {
+      actions.appendChild(el('a', { class: 'src-link', href: pr.url, rel: 'nofollow noopener', target: '_blank', text: '가격 출처 보기' }));
+    }
     li.appendChild(actions);
     return li;
   }
@@ -1295,14 +1248,26 @@ if (typeof module !== 'undefined' && module.exports) module.exports = Calc;
     if (valid === 0) { p.textContent = '가격과 수량을 넣으면 여기에 최저가가 표시돼요.'; return; }
     var best = bestEntries(cat);
     if (best.length === 0) {
-      p.textContent = '상품을 2개 이상 입력하면 최저가를 알려드려요.';
+      p.textContent = cat === 'formula'
+        ? '액상과 가루는 따로 비교해요. 같은 종류 상품을 2개 이상 넣으면 최저가를 알려드려요.'
+        : '같은 조건의 상품을 2개 이상 넣으면 최저가를 알려드려요.';
       return;
     }
-    best.forEach(function (b, k) {
+    /* 동점이면 같은 줄에 "공동 최저가: A · B"로 묶습니다(줄을 여러 번 찍지 않음). */
+    var groups = [];
+    best.forEach(function (b) {
+      var g = null;
+      for (var i = 0; i < groups.length; i++) if (groups[i].group === b.res.group) g = groups[i];
+      if (!g) { g = { group: b.res.group, items: [] }; groups.push(g); }
+      g.items.push(b);
+    });
+    groups.forEach(function (g, k) {
       if (k) p.appendChild(document.createElement('br'));
-      var prefix = cat === 'formula' ? (b.res.group === 'liquid' ? '액상 최저가: ' : '가루 최저가: ') : CAT[cat].label + ' 최저가: ';
-      p.appendChild(document.createTextNode(prefix + rowLabel(cat, b.i) + ' · '));
-      p.appendChild(el('strong', { text: unitText(cat, b.res) }));
+      var label = cat === 'formula' ? (g.group === 'liquid' ? '액상' : '가루') : CAT[cat].label;
+      var prefix = label + (g.items.length > 1 ? ' 공동 최저가: ' : ' 최저가: ');
+      var names = g.items.map(function (b) { return rowLabel(cat, b.i); }).join(' · ');
+      p.appendChild(document.createTextNode(prefix + names + ' · '));
+      p.appendChild(el('strong', { text: unitText(cat, g.items[0].res) }));
     });
   }
 
@@ -1457,9 +1422,6 @@ if (typeof module !== 'undefined' && module.exports) module.exports = Calc;
     }
     var addP = t.closest('[data-add-product]');
     if (addP) { addProductToCalc(addP.getAttribute('data-add-product')); return; }
-
-    var cpBtn = t.closest('a[data-coupang-id]');
-    if (cpBtn && cpBtn.getAttribute('href') === '#') { e.preventDefault(); return; }
 
     var add = t.closest('[data-add]');
     if (add) {
